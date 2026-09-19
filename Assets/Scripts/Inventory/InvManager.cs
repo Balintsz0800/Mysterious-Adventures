@@ -4,6 +4,8 @@ public class InvManager : MonoBehaviour
 {
     public InvSlot[] slots;
     private int selectedSlot = -1;
+    public GameObject inventory;
+    private bool isOpen;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,6 +51,20 @@ public class InvManager : MonoBehaviour
             if (newSlot != selectedSlot)
             {
                 ChangeSelectedSlot(newSlot);
+            }
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (!isOpen)
+            {
+                inventory.SetActive(true);
+                isOpen = true;
+            }
+            else if (isOpen)
+            {
+                inventory.SetActive(false);
+                isOpen = false;
             }
         }
     }

@@ -24,14 +24,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GetComponent<Transform>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         movementVector.x = Input.GetAxis("Horizontal");

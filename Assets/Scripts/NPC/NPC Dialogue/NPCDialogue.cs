@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NPCDialogue : MonoBehaviour
 {
-    [SerializeField] private GameObject dialogueUI;
+    public GameObject dialogueUI;
     [SerializeField] private TMP_Text dialogueText;
     
     [SerializeField] private float dialogueSpeed = 3f;
@@ -16,7 +16,7 @@ public class NPCDialogue : MonoBehaviour
     
     private int currentLine = 0;
     private bool isTyping = false;
-    private bool dialogueActive = false;
+    public bool dialogueActive = false;
     private Coroutine typingCoroutine;
 
     void Start()
@@ -34,7 +34,7 @@ public class NPCDialogue : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Next();
         }

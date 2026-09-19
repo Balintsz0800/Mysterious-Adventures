@@ -13253,12 +13253,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   interactText: {fileID: 2136366705}
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-  npcDialogue: {fileID: 0}
->>>>>>> Stashed changes
-=======
   npcDialogue: {fileID: 102237876}
 --- !u!114 &102237875
 MonoBehaviour:
@@ -17582,7 +17576,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: f4c7c4c15c583cf4f948d503660475ee, type: 3}
   m_PrefabInstance: {fileID: 1329012439}
   m_PrefabAsset: {fileID: 0}
->>>>>>> origin/npc
 --- !u!224 &139581705 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 98688250719779660, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
@@ -21333,12 +21326,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   interactText: {fileID: 1895347990}
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-  npcDialogue: {fileID: 0}
->>>>>>> Stashed changes
-=======
   npcDialogue: {fileID: 168940489}
 --- !u!114 &168940488
 MonoBehaviour:
@@ -32268,7 +32255,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: f4c7c4c15c583cf4f948d503660475ee, type: 3}
   m_PrefabInstance: {fileID: 477085974}
   m_PrefabAsset: {fileID: 0}
->>>>>>> origin/npc
 --- !u!224 &263609007 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 98688250719779660, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
@@ -146629,12 +146615,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   interactText: {fileID: 1300625238}
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-  npcDialogue: {fileID: 0}
->>>>>>> Stashed changes
-=======
   npcDialogue: {fileID: 1084034774}
 --- !u!114 &1084034773
 MonoBehaviour:
@@ -146956,7 +146936,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: f4c7c4c15c583cf4f948d503660475ee, type: 3}
   m_PrefabInstance: {fileID: 1390518906}
   m_PrefabAsset: {fileID: 0}
->>>>>>> origin/npc
 --- !u!224 &1087019074 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 98688250719779660, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}

@@ -10,6 +10,7 @@ public class NPCInteract : MonoBehaviour
     private NPC currentNpc = null;
     
     private PlayerMovement playerMovement;
+    public NPCDialogue npcDialogue;
 
     private void Start()
     {
@@ -35,6 +36,11 @@ public class NPCInteract : MonoBehaviour
             if (currentNpc != null)
             {
                 currentNpc.interactText.SetActive(true);
+                
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    currentNpc.Talk();
+                }
             }
         }
         else

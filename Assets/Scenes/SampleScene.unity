@@ -490,6 +490,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   interactText: {fileID: 2136366705}
+<<<<<<< Updated upstream
+=======
+  npcDialogue: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!224 &139581705 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 98688250719779660, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
@@ -638,6 +642,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   interactText: {fileID: 1895347990}
+<<<<<<< Updated upstream
+=======
+  npcDialogue: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!224 &263609007 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 98688250719779660, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
@@ -2521,6 +2529,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   interactText: {fileID: 1300625238}
+<<<<<<< Updated upstream
+=======
+  npcDialogue: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!224 &1087019074 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 98688250719779660, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}

@@ -48,7 +48,6 @@ public class NPCDialogue : MonoBehaviour
 
         if (dialogueIndex == -1)
         {
-            Debug.Log("No dialogue available for " + gameObject.name);
             return;
         }
 
@@ -67,7 +66,7 @@ public class NPCDialogue : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButton(0))
         {
             Next();
         }
@@ -115,9 +114,9 @@ public class NPCDialogue : MonoBehaviour
             return state == QuestState.Active;
         }
 
-        if (dialogue.questRequirement == DialogueQuestRequirement.Complated)
+        if (dialogue.questRequirement == DialogueQuestRequirement.Completed)
         {
-            return state == QuestState.Complated;
+            return state == QuestState.Completed;
         }
 
         if (dialogue.questRequirement == DialogueQuestRequirement.Failed)

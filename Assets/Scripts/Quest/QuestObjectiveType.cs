@@ -4,17 +4,17 @@ public enum QuestObjectiveType
     CollectItem,
     HaveItem,
     Location,
-    interact,
+    Interact,
     Craft,
     Kill,
     DeliverItem
-}           
+}
 
 public enum QuestState
 {
     NotStarted,
     Active,
-    Complated,
+    Completed,
     Failed
 }
 
@@ -23,6 +23,6 @@ public enum DialogueQuestRequirement
     None,
     NotStarted,
     Active,
-    Complated,
+    Completed,
     Failed
 }

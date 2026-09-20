@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 77aa6d83344c5254b9286baa6946e94b
+guid: 801b1b507fcd9124790153b3c3704538
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1503966324551082493
-    second: Flower_Grass_0
+      213: -1969272444073682298
+    second: Grass_flower_jo_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flower_Grass_0
+      name: Grass_flower_jo_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 30e9bfe9896d02be0800000000000000
-      internalID: -1503966324551082493
+      spriteID: 68ad501552dbba4e0800000000000000
+      internalID: -1969272444073682298
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b59a96709a9f1c14ea0ae3693fd16bc3
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -133,11 +133,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Flower_Grass_0: -1503966324551082493
+      Grass_flower_jo_0: -1969272444073682298
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,27 +1,42 @@
-using System;
 using UnityEngine;
-using TMPro;
+
 public class NPC : MonoBehaviour
 {
     public GameObject interactText;
-    NPCRelationships npcRelationships;
-    public NPCDialogue npcDialogue;
+    [SerializeField] private NPCDialogue dialogue;
+
+    private NPCRelationships npcRelationships;
 
     private void Start()
     {
         npcRelationships = GetComponent<NPCRelationships>();
-        
+
         if (interactText != null)
         {
             interactText.SetActive(false);
+        }
+
+        if (dialogue == null)
+        {
+            dialogue = GetComponent<NPCDialogue>();
         }
     }
 
     public void Talk()
     {
-        if (npcDialogue != null)
+        if (dialogue != null)
         {
-            npcDialogue.StartDialogue();
+            dialogue.StartDialogue();
+        }
+
+        if (npcRelationships != null)
+        {
+            npcRelationships.ChangeRelationship(10);
+        }
+
+        if (QuestManager.Instance != null)
+        {
+            QuestManager.Instance.OnTalk(this);
         }
     }
 }

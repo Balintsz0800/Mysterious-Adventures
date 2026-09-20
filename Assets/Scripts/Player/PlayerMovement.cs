@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movementVector;
     Rigidbody2D rb;
     
+    Animation anim;
+    
     [Header("Camera")]
     public Camera cam;
     private Transform player;
@@ -28,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = GetComponent<Transform>();
+        anim = GetComponent<Animation>();
     }
     
     void Update()
@@ -44,14 +47,11 @@ public class PlayerMovement : MonoBehaviour
         {
             lastVerticalVector = movementVector.y;
         }
-
-        if (Input.GetKey(KeyCode.LeftShift) && _player.currentStamina != 0)
-        {
-            _player.currentStamina --;
-        }
         
         movementVector *= speed;
         rb.linearVelocity = movementVector;
+        anim.horizontal = movementVector.x;
+        anim.vertical = movementVector.y;
     }
 
     void LateUpdate()

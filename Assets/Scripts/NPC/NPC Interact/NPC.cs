@@ -24,7 +24,7 @@ public class NPC : MonoBehaviour
 
     public void Talk()
     {
-        if (dialogue != null)
+        if (dialogue != null &&  dialogue.inInteractionRange)
         {
             dialogue.StartDialogue();
         }

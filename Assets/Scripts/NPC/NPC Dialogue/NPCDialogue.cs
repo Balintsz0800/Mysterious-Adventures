@@ -12,6 +12,8 @@ public class NPCDialogueEntry
     public QuestData requiredQuest;
     public bool givesQuest;
     public QuestData questToGive;
+
+    public bool completed;
 }
 
 public class NPCDialogue : MonoBehaviour
@@ -20,6 +22,10 @@ public class NPCDialogue : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private float dialogueSpeed = 0.03f;
     [SerializeField] private List<NPCDialogueEntry> dialogues = new List<NPCDialogueEntry>();
+
+    private Transform player;
+    [SerializeField] private float InteractDistance = 3f;
+    public bool inInteractionRange;
 
     private int currentDialogue;
     private int currentLine;
@@ -31,6 +37,8 @@ public class NPCDialogue : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        
         if (dialogueUI != null)
         {
             dialogueUI.SetActive(false);
@@ -61,12 +69,29 @@ public class NPCDialogue : MonoBehaviour
 
     private void Update()
     {
+        float distance = Vector2.Distance(transform.position, player.position);
+
+        if (distance < InteractDistance)
+        {
+            inInteractionRange = true;
+        }
+        else
+        {
+            inInteractionRange = false;
+        }
+
+        if (!inInteractionRange && dialogueActive)
+        {
+            FinishDialogue();
+            return;
+        }
+        
         if (!dialogueActive)
         {
             return;
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Next();
         }
@@ -76,7 +101,7 @@ public class NPCDialogue : MonoBehaviour
     {
         for (int i = 0; i < dialogues.Count; i++)
         {
-            if (IsDialogueAvailable(dialogues[i]))
+            if (!dialogues[i].completed && IsDialogueAvailable(dialogues[i]))
             {
                 return i;
             }
@@ -200,6 +225,8 @@ public class NPCDialogue : MonoBehaviour
 
         dialogueUI.SetActive(false);
         dialogueText.text = "";
+        
+        dialogue.completed = true;
 
         if (dialogue.givesQuest && dialogue.questToGive != null)
         {

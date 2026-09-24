@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: TestItem
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemType: 0
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 7931105662249674576, guid: 184c2a8e4314509489119999c54891fc, type: 3}
   handPrefab: {fileID: 0}
   durability: 0
+  stackable: 1
   image: {fileID: 584381794286567304, guid: f7f702b5ac3407149ad3b857946f69cb, type: 3}

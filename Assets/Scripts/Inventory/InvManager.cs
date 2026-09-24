@@ -16,6 +16,7 @@ public class InvManager : MonoBehaviour
     void Start()
     {
         ChangeSelectedSlot(0);
+        inventory.SetActive(false);
     }
 
     void Update()
@@ -44,13 +45,13 @@ public class InvManager : MonoBehaviour
                 newSlot--;
             }
 
-            if (newSlot >= slots.Length)
+            if (newSlot >= 9)
             {
                 newSlot = 0;
             }
             else if (newSlot < 0)
             {
-                newSlot = slots.Length - 1;
+                newSlot = 8;
             }
 
             if (newSlot != selectedSlot)
@@ -163,6 +164,58 @@ public class InvManager : MonoBehaviour
             }
         }
         return item;
+    }
+
+    public bool AddItem(Item item, int amount)
+    {
+        if (item.stackable)
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                InvItem existing = slots[i].GetComponentInChildren<InvItem>();
+
+                if (existing != null && existing.item == item && existing.count < maxStackedItem)
+                {
+                    existing.count += amount;
+                    existing.RefreshCount();
+                    
+                    return true;
+                }
+            }
+            
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i].GetComponentInChildren<InvItem>() == null)
+                {
+                    SpawnNewItem(item, slots[i], amount);
+                
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        for (int x = 0; x < amount; x++)
+        {
+            bool placed = false;
+
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i].GetComponentInChildren<InvItem>() == null)
+                {
+                    SpawnNewItem(item, slots[i], 1);
+                    placed = true;
+                    
+                    break;
+                }
+            }
+
+            if (!placed)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

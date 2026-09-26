@@ -372592,6 +372592,18 @@ MonoBehaviour:
     - Test coming
     questRequirement: 0
     requiredQuest: {fileID: 0}
+    givesQuest: 1
+    questToGive: {fileID: 0}
+    completed: 0
+  - dialogueName: Major
+    dialogueLines:
+    - First step go look after the forst on Southwest.
+    - GO! GO! GO!
+    - And than look araund where the mine will be located, which will be in the northwest,
+      the village will be in the norheast, and finally the field will be located
+      in the southwest.
+    questRequirement: 0
+    requiredQuest: {fileID: 0}
     givesQuest: 0
     questToGive: {fileID: 0}
     completed: 0

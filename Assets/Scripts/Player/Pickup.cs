@@ -36,13 +36,4 @@ public class Pickup : MonoBehaviour
             }
         }
     }
-    
-    private void OnDrawGizmosSelected()
-    {
-        if (playerMovement == null) return;
-
-        Gizmos.color = Color.green;
-
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3)playerMovement.FacingDir * pickupDis);
-    }
 }

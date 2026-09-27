@@ -16,5 +16,6 @@ public class Item : ScriptableObject
         Pickaxe,
         Axe,
         Sword,
+        QuestItem
     }
 }

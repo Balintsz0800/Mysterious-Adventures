@@ -99,7 +99,12 @@ public class NPCDialogue : MonoBehaviour
 
     private int GetAvailableDialogue()
     {
+<<<<<<< HEAD
         for (int i = 0; i < dialogues.Count; i++)
+=======
+<<<<<<< Updated upstream
+        if (dialogueLines == null || dialogueLines.Length == 0)
+>>>>>>> npc
         {
             if (!dialogues[i].completed && IsDialogueAvailable(dialogues[i]))
             {
@@ -107,7 +112,27 @@ public class NPCDialogue : MonoBehaviour
             }
         }
 
+<<<<<<< HEAD
         return -1;
+=======
+        ShowCurrentLine();
+=======
+        int lastCompletedDialogue = - 1;
+        
+        for (int i = 0; i < dialogues.Count; i++)
+        {
+            if (!dialogues[i].completed && IsDialogueAvailable(dialogues[i]))
+            {
+                return i;
+            }
+
+            if (dialogues[i].completed)
+            {
+                lastCompletedDialogue = i;
+            }
+        }
+        return lastCompletedDialogue;
+>>>>>>> npc
     }
 
     private bool IsDialogueAvailable(NPCDialogueEntry dialogue)
@@ -150,6 +175,10 @@ public class NPCDialogue : MonoBehaviour
         }
 
         return false;
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> npc
     }
 
     private void Next()

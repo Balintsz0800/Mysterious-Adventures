@@ -28,6 +28,7 @@ public class QuestManager : MonoBehaviour
 
         if (GetQuestState(quest) != QuestState.NotStarted)
         {
+<<<<<<< HEAD
             return;
         }
 
@@ -77,6 +78,63 @@ public class QuestManager : MonoBehaviour
             }
         }
     }
+=======
+<<<<<<< Updated upstream
+            
+        }
+    }
+}
+=======
+            return;
+        }
+
+        activeQuests.Add(new QuestRuntime(quest));
+        Debug.Log("Quest started: " + quest.questName);
+    }
+
+    public QuestState GetQuestState(QuestData quest)
+    {
+        foreach (QuestRuntime q in activeQuests)
+        {
+            if (q.quest == quest)
+            {
+                return q.state;
+            }
+        }
+
+        foreach (QuestRuntime q in completedQuests)
+        {
+            if (q.quest == quest)
+            {
+                return q.state;
+            }
+        }
+
+        return QuestState.NotStarted;
+    }
+
+    public void OnTalk(NPC npc)
+    {
+        foreach (QuestRuntime q in activeQuests)
+        {
+            for (int i = 0; i < q.quest.objectives.Count; i++)
+            {
+                QuestObjective objective = q.quest.objectives[i];
+
+                if (objective.objectiveType != QuestObjectiveType.Talk)
+                {
+                    continue;
+                }
+
+                if (objective.targetID == npc.NpcId)
+                {
+                    q.AddProgress(i, 1);
+                    CheckQuest(q);
+                }
+            }
+        }
+    }
+>>>>>>> npc
 
     public void OnItemCollected(Item item, int amount)
     {
@@ -100,7 +158,11 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     public void OnLocationReached(GameObject location)
+=======
+    public void OnLocationReached(string location)
+>>>>>>> npc
     {
         foreach (QuestRuntime q in activeQuests)
         {
@@ -113,7 +175,11 @@ public class QuestManager : MonoBehaviour
                     continue;
                 }
 
+<<<<<<< HEAD
                 if (objective.target == location)
+=======
+                if (objective.targetID == location)
+>>>>>>> npc
                 {
                     q.AddProgress(i, 1);
                     CheckQuest(q);
@@ -122,7 +188,11 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     public void OnInteract(GameObject target)
+=======
+    public void OnInteract(string target)
+>>>>>>> npc
     {
         foreach (QuestRuntime q in activeQuests)
         {
@@ -135,7 +205,11 @@ public class QuestManager : MonoBehaviour
                     continue;
                 }
 
+<<<<<<< HEAD
                 if (objective.target == target)
+=======
+                if (objective.targetID == target)
+>>>>>>> npc
                 {
                     q.AddProgress(i, 1);
                     CheckQuest(q);
@@ -166,7 +240,11 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     public void OnKill(GameObject enemy)
+=======
+    public void OnKill(string enemy)
+>>>>>>> npc
     {
         foreach (QuestRuntime q in activeQuests)
         {
@@ -179,7 +257,11 @@ public class QuestManager : MonoBehaviour
                     continue;
                 }
 
+<<<<<<< HEAD
                 if (objective.target == enemy)
+=======
+                if (objective.targetID == enemy)
+>>>>>>> npc
                 {
                     q.AddProgress(i, 1);
                     CheckQuest(q);
@@ -201,4 +283,9 @@ public class QuestManager : MonoBehaviour
 
         Debug.Log("Quest completed: " + q.quest.questName);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Stashed changes
+>>>>>>> npc

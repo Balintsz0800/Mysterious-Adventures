@@ -37,6 +37,7 @@ public class Pickup : MonoBehaviour
         }
     }
     
+<<<<<<< HEAD
     private void OnDrawGizmosSelected()
     {
         if (playerMovement == null) return;
@@ -45,4 +46,7 @@ public class Pickup : MonoBehaviour
 
         Gizmos.DrawLine(transform.position, transform.position + (Vector3)playerMovement.FacingDir * pickupDis);
     }
+=======
+   
+>>>>>>> npc
 }

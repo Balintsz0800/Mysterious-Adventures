@@ -73,6 +73,11 @@ public class InvManager : MonoBehaviour
                 isOpen = false;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            DropSelectedItem();
+        }
     }
 
     void ChangeSelectedSlot(int newValue)
@@ -85,6 +90,7 @@ public class InvManager : MonoBehaviour
         slots[newValue].Select();
         selectedSlot = newValue;
     }
+<<<<<<< HEAD
 
     private void DropSelectedItem()
     {
@@ -93,10 +99,18 @@ public class InvManager : MonoBehaviour
             return;
         }
 
+=======
+<<<<<<< Updated upstream
+=======
+
+    private void DropSelectedItem()
+    {
+>>>>>>> npc
         InvSlot invSlot = slots[selectedSlot];
 
         InvItem invItem = invSlot.GetComponentInChildren<InvItem>();
 
+<<<<<<< HEAD
         if (invItem == null || invItem.item == null)
         {
             return;
@@ -107,6 +121,15 @@ public class InvManager : MonoBehaviour
             Instantiate(invItem.item.itemPrefab, dropPoint.position, Quaternion.identity);
         }
 
+=======
+        if (invItem == null)
+        {
+            return;
+        }
+        
+        Instantiate(invItem.item.itemPrefab, dropPoint.position, Quaternion.identity);
+        
+>>>>>>> npc
         invItem.count--;
 
         if (invItem.count <= 0)
@@ -218,4 +241,8 @@ public class InvManager : MonoBehaviour
         return true;
     }
 
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> npc
 }

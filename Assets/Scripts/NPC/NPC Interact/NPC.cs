@@ -3,9 +3,21 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     public GameObject interactText;
+<<<<<<< HEAD
     [SerializeField] private NPCDialogue dialogue;
 
     private NPCRelationships npcRelationships;
+=======
+<<<<<<< Updated upstream
+    NPCRelationships npcRelationships;
+    public NPCDialogue npcDialogue;
+=======
+    [SerializeField] private NPCDialogue dialogue;
+    public string NpcId;
+
+    private NPCRelationships npcRelationships;
+>>>>>>> Stashed changes
+>>>>>>> npc
 
     private void Start()
     {

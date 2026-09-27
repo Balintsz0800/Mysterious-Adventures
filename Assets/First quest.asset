@@ -18,12 +18,12 @@ MonoBehaviour:
   objectives:
   - objectiveType: 0
     description: Talk with an NPC
-    targetID: 
+    targetID: Forest guy
     item: {fileID: 0}
     requiredAmount: 0
   - objectiveType: 0
     description: Talk with the Major
-    targetID: 
+    targetID: Major
     item: {fileID: 0}
     requiredAmount: 0
   rewardMoney: 0

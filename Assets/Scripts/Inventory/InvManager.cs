@@ -73,6 +73,11 @@ public class InvManager : MonoBehaviour
                 isOpen = false;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            DropSelectedItem();
+        }
     }
 
     void ChangeSelectedSlot(int newValue)
@@ -102,7 +107,7 @@ public class InvManager : MonoBehaviour
             return;
         }
 
-        if (invItem.item.handPrefab != null && dropPoint != null)
+        if (dropPoint != null)
         {
             Instantiate(invItem.item.itemPrefab, dropPoint.position, Quaternion.identity);
         }

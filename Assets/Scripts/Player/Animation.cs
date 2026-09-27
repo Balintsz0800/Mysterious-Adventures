@@ -7,6 +7,7 @@ public class Animation : MonoBehaviour
 
     public float horizontal;
     public float vertical;
+    public bool isMoving;
 
     private void Awake()
     {
@@ -17,5 +18,6 @@ public class Animation : MonoBehaviour
     {
         animator.SetFloat("Horizontal", horizontal);
         animator.SetFloat("Vertical", vertical);
+        animator.SetBool("isMoving", isMoving);
     }
 }

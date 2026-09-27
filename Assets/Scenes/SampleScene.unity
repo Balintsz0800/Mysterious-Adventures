@@ -341,7 +341,8 @@ Transform:
   m_LocalPosition: {x: -0.02, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 779606136}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &21980750
@@ -453,6 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Animation
   horizontal: 0
   vertical: 0
+  isMoving: 0
 --- !u!111 &21980755
 Animation:
   m_ObjectHideFlags: 0
@@ -364761,6 +364763,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4ded77752ca494cacda6e97eae79f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InvSlot
+--- !u!1 &779606135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 779606136}
+  m_Layer: 0
+  m_Name: Drop point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &779606136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779606135}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.82, y: -0.571, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 21980749}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &795016430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -380214,7 +380247,7 @@ MonoBehaviour:
   inventory: {fileID: 497538637}
   maxStackedItem: 30
   invItemPrefab: {fileID: 7441509803115286558, guid: 177b27834f4f80c42834318bdc179043, type: 3}
-  dropPoint: {fileID: 0}
+  dropPoint: {fileID: 779606136}
 --- !u!4 &2111862372
 Transform:
   m_ObjectHideFlags: 0

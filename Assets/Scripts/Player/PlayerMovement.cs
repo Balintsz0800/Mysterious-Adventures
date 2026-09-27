@@ -38,20 +38,19 @@ public class PlayerMovement : MonoBehaviour
         movementVector.x = Input.GetAxis("Horizontal");
         movementVector.y = Input.GetAxis("Vertical");
 
-        if (movementVector.x != 0)
+        if (movementVector.x != 0 || movementVector.y != 0)
         {
+            anim.horizontal =  movementVector.x;
+            anim.vertical = movementVector.y;
+            
             lastHorizontalVector = movementVector.x;
-        }
-
-        if (movementVector.y != 0)
-        {
             lastVerticalVector = movementVector.y;
         }
         
+        anim.isMoving = movementVector.x != 0 || movementVector.y != 0;
+        
         movementVector *= speed;
         rb.linearVelocity = movementVector;
-        anim.horizontal = movementVector.x;
-        anim.vertical = movementVector.y;
     }
 
     void LateUpdate()

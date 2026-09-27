@@ -17,4 +17,4 @@ MonoBehaviour:
   handPrefab: {fileID: 0}
   durability: 0
   stackable: 1
-  image: {fileID: 6853316077166303748, guid: b5ab4a8c42661a5428dea63b89d68aec, type: 3}
+  image: {fileID: -5034061168752090764, guid: 2c724024d13622b4bb811eb4e052c946, type: 3}

@@ -310,6 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Animation
   horizontal: 0
   vertical: 0
+  isMoving: 0
 --- !u!1 &792118732
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,19 +17,9 @@ MonoBehaviour:
   description: Talk with an NPC
   objectives:
   - objectiveType: 0
-<<<<<<< HEAD
     description: Talk with an NPC
     target: {fileID: 0}
     item: {fileID: 0}
     requiredAmount: 0
   rewardMoney: 0
   rewardItems: []
-=======
-    description: Go to the forest
-    targetID: Forest
-    item: {fileID: 11400000, guid: f33968a7835a5ed4aa9275a24b6e6294, type: 2}
-    requiredAmount: 1
-  rewardMoney: 0
-  rewardItems:
-  - {fileID: 11400000, guid: f33968a7835a5ed4aa9275a24b6e6294, type: 2}
->>>>>>> npc

@@ -7,10 +7,6 @@ public class Animation : MonoBehaviour
 
     public float horizontal;
     public float vertical;
-<<<<<<< HEAD
-=======
-    public bool isMoving;
->>>>>>> npc
 
     private void Awake()
     {
@@ -21,9 +17,5 @@ public class Animation : MonoBehaviour
     {
         animator.SetFloat("Horizontal", horizontal);
         animator.SetFloat("Vertical", vertical);
-<<<<<<< HEAD
-=======
-        animator.SetBool("isMoving", isMoving);        
->>>>>>> npc
     }
 }

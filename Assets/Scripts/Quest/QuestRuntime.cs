@@ -31,32 +31,18 @@ public class QuestRuntime
         return true;
     }
 
-<<<<<<< HEAD
     public void AddProgress(int index, int amount)
     {
         if (index < 0 || index >= progress.Count)
-=======
-    public void AddProgress(int i, int amount)
-    {
-        if (i < 0 || i >= progress.Count)
->>>>>>> npc
         {
             return;
         }
 
-<<<<<<< HEAD
         progress[index] += amount;
 
         if (progress[index] > quest.objectives[index].requiredAmount)
         {
             progress[index] = quest.objectives[index].requiredAmount;
-=======
-        progress[i] += amount;
-
-        if (progress[i] > quest.objectives[i].requiredAmount)
-        {
-            progress[i] = quest.objectives[i].requiredAmount;
->>>>>>> npc
         }
     }
 }

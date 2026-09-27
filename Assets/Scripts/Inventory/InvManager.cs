@@ -67,6 +67,11 @@ public class InvManager : MonoBehaviour
                 isOpen = false;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            DropSelectedItem();
+        }
     }
     
     void ChangeSelectedSlot(int newValue)
@@ -78,4 +83,132 @@ public class InvManager : MonoBehaviour
         slots[newValue].Select();
         selectedSlot = newValue;
     }
+<<<<<<< Updated upstream
+=======
+
+    private void DropSelectedItem()
+    {
+        InvSlot invSlot = slots[selectedSlot];
+
+        InvItem invItem = invSlot.GetComponentInChildren<InvItem>();
+
+        if (invItem == null)
+        {
+            return;
+        }
+        
+        Instantiate(invItem.item.itemPrefab, dropPoint.position, Quaternion.identity);
+        
+        invItem.count--;
+
+        if (invItem.count <= 0)
+        {
+            Destroy(invItem.gameObject);
+        }
+        else
+        {
+            invItem.RefreshCount();
+        }
+    }
+
+    private void SpawnNewItem(Item item, InvSlot slot, int amount)
+    {
+        GameObject newItem = Instantiate(invItemPrefab, slot.transform);
+        
+        InvItem invItem = newItem.GetComponent<InvItem>();
+        
+        invItem.initaliseItem(item);
+        
+        invItem.count = amount;
+        
+        invItem.RefreshCount();
+    }
+
+    public Item GetSelectedItem(bool use)
+    {
+        if (selectedSlot < 0 || selectedSlot >= slots.Length)
+        {
+            return null; 
+        }
+
+        InvSlot slot = slots[selectedSlot];
+        
+        InvItem itemInSlot = slot.GetComponentInChildren<InvItem>();
+
+        if (itemInSlot == null)
+        {
+            return null;
+        }
+
+        Item item = itemInSlot.item;
+
+        if (use)
+        {
+            itemInSlot.count--;
+
+            if (itemInSlot.count <= 0)
+            {
+                Destroy(itemInSlot.gameObject);
+            }
+            else
+            {
+                itemInSlot.RefreshCount();
+            }
+        }
+        return item;
+    }
+
+    public bool AddItem(Item item, int amount)
+    {
+        if (item.stackable)
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                InvItem existing = slots[i].GetComponentInChildren<InvItem>();
+
+                if (existing != null && existing.item == item && existing.count < maxStackedItem)
+                {
+                    existing.count += amount;
+                    existing.RefreshCount();
+                    
+                    return true;
+                }
+            }
+            
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i].GetComponentInChildren<InvItem>() == null)
+                {
+                    SpawnNewItem(item, slots[i], amount);
+                
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        for (int x = 0; x < amount; x++)
+        {
+            bool placed = false;
+
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i].GetComponentInChildren<InvItem>() == null)
+                {
+                    SpawnNewItem(item, slots[i], 1);
+                    placed = true;
+                    
+                    break;
+                }
+            }
+
+            if (!placed)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+>>>>>>> Stashed changes
 }

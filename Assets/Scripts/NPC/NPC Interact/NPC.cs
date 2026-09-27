@@ -4,8 +4,15 @@ using TMPro;
 public class NPC : MonoBehaviour
 {
     public GameObject interactText;
+<<<<<<< Updated upstream
     NPCRelationships npcRelationships;
     public NPCDialogue npcDialogue;
+=======
+    [SerializeField] private NPCDialogue dialogue;
+    public string NpcId;
+
+    private NPCRelationships npcRelationships;
+>>>>>>> Stashed changes
 
     private void Start()
     {

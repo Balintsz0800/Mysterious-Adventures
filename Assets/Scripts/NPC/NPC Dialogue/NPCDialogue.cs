@@ -42,6 +42,7 @@ public class NPCDialogue : MonoBehaviour
 
     public void StartDialogue()
     {
+<<<<<<< Updated upstream
         if (dialogueLines == null || dialogueLines.Length == 0)
         {
             return;
@@ -53,6 +54,65 @@ public class NPCDialogue : MonoBehaviour
         dialogueUI.SetActive(true);
 
         ShowCurrentLine();
+=======
+        int lastCompletedDialogue = - 1;
+        
+        for (int i = 0; i < dialogues.Count; i++)
+        {
+            if (!dialogues[i].completed && IsDialogueAvailable(dialogues[i]))
+            {
+                return i;
+            }
+
+            if (dialogues[i].completed)
+            {
+                lastCompletedDialogue = i;
+            }
+        }
+        return lastCompletedDialogue;
+    }
+
+    private bool IsDialogueAvailable(NPCDialogueEntry dialogue)
+    {
+        if (dialogue.questRequirement == DialogueQuestRequirement.None)
+        {
+            return true;
+        }
+
+        if (dialogue.requiredQuest == null)
+        {
+            return false;
+        }
+
+        if (QuestManager.Instance == null)
+        {
+            return false;
+        }
+
+        QuestState state = QuestManager.Instance.GetQuestState(dialogue.requiredQuest);
+
+        if (dialogue.questRequirement == DialogueQuestRequirement.NotStarted)
+        {
+            return state == QuestState.NotStarted;
+        }
+
+        if (dialogue.questRequirement == DialogueQuestRequirement.Active)
+        {
+            return state == QuestState.Active;
+        }
+
+        if (dialogue.questRequirement == DialogueQuestRequirement.Completed)
+        {
+            return state == QuestState.Completed;
+        }
+
+        if (dialogue.questRequirement == DialogueQuestRequirement.Failed)
+        {
+            return state == QuestState.Failed;
+        }
+
+        return false;
+>>>>>>> Stashed changes
     }
 
     private void Next()

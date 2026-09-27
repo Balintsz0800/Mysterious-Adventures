@@ -45,10 +45,20 @@ public class PlayerMovement : MonoBehaviour
             lastVerticalVector = movementVector.y;
         }
 
+<<<<<<< Updated upstream:Assets/Scripts/PlayerMovement.cs
         if (Input.GetKey(KeyCode.LeftShift) && _player.currentStamina != 0)
         {
             _player.currentStamina --;
         }
+=======
+        if (movementVector.x != 0 || movementVector.y != 0)
+        {
+            anim.horizontal = movementVector.x;
+            anim.vertical = movementVector.y;
+        }
+        
+        anim.isMoving = movementVector.x != 0 || movementVector.y != 0;
+>>>>>>> Stashed changes:Assets/Scripts/Player/PlayerMovement.cs
         
         movementVector *= speed;
         rb.linearVelocity = movementVector;

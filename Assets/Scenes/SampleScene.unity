@@ -243,6 +243,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7466114641101583969, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
+    - {fileID: -2272268812775827081, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
@@ -338,7 +339,7 @@ Transform:
   m_GameObject: {fileID: 21980747}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.43, y: -1.42, z: 0}
+  m_LocalPosition: {x: -21.8, y: -1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2731,6 +2732,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7466114641101583969, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
+    - {fileID: -2272268812775827081, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
@@ -3763,6 +3765,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7466114641101583969, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
+    - {fileID: -2272268812775827081, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
@@ -5226,7 +5229,7 @@ Transform:
   m_GameObject: {fileID: 779606135}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.82, y: -0.571, z: 0}
+  m_LocalPosition: {x: 0.72, y: -0.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6671,6 +6674,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7466114641101583969, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
+    - {fileID: -2272268812775827081, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
@@ -7556,7 +7560,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1094873076}
   dialogueSpeed: 0.03
   dialogues:
-  - dialogueName: Major
+  - dialogueName: Mayor
     dialogueLines:
     - Welcome to our city, which is currently under construction, so you wont run
       into any local residents right now though you can already find a forest to
@@ -7567,7 +7571,7 @@ MonoBehaviour:
     givesQuest: 1
     questToGive: {fileID: 11400000, guid: 2945cab06bb6b394fb6da8fca0640cbb, type: 2}
     completed: 0
-  - dialogueName: Major
+  - dialogueName: Mayor
     dialogueLines:
     - Found him? What did he said?
     - 
@@ -20358,6 +20362,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7466114641101583969, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
+    - {fileID: -2272268812775827081, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
@@ -22552,6 +22557,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7466114641101583969, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
+    - {fileID: -2272268812775827081, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
@@ -23965,7 +23971,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 07e41dfb5e616bb4098cc85ea61ee05c, type: 2}
+  - {fileID: 2100000, guid: 7ed8e919916cf1b4db68f8130037f4ff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -414259,6 +414265,12 @@ Tilemap:
     m_Data: {fileID: -1179076425, guid: ca80cba20f65cf4499ce70106452c1c5, type: 3}
   - m_RefCount: 51
     m_Data: {fileID: -1716189004, guid: ca80cba20f65cf4499ce70106452c1c5, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 1176
     m_Data:
@@ -414281,6 +414293,12 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 1176
     m_Data: {r: 1, g: 1, b: 1, a: 1}
+  - m_RefCount: 0
+    m_Data: {r: 1.65e-43, g: 1.65e-43, b: 1.65e-43, a: 1.65e-43}
+  - m_RefCount: 0
+    m_Data: {r: 1.65e-43, g: 1.65e-43, b: 1.65e-43, a: 1.65e-43}
+  - m_RefCount: 0
+    m_Data: {r: 1.65e-43, g: 1.65e-43, b: 1.65e-43, a: 1.65e-43}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -414565,6 +414583,135 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c91b3f5eb95d26749857e943020865e6, type: 3}
+--- !u!1 &1651034785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1651034787}
+  - component: {fileID: 1651034786}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1651034786
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651034785}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 1e0a636cb391db94fb2c8ca8dfe284ff, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.027
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1651034787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651034785}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.364, y: 13.15873, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1652714228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -414684,6 +414831,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7466114641101583969, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
+    - {fileID: -2272268812775827081, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
@@ -416532,6 +416680,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7466114641101583969, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
+    - {fileID: -2272268812775827081, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}
@@ -418118,6 +418267,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f3d6f9d966bad498dbb3843be6bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestManager
+  questTextBox: {fileID: 0}
+  questTitle: {fileID: 0}
+  questState: {fileID: 0}
   activeQuests: []
   completedQuests: []
 --- !u!4 &2118341552 stripped
@@ -418310,32 +418462,40 @@ MonoBehaviour:
   dialogues:
   - dialogueName: Person in the forest
     dialogueLines:
-    - Hey, are you the one who lives out here?
-    - Yeah, that's me. What brings you all the way out here?
-    - The mayor sent me. He said you might know something about the forest.
-    - The mayor, huh? I haven't spoken to him in a while.
-    - He said you noticed something unusual recently.
-    - I did. A few days ago, I started seeing lights between the trees at night.
-    - Lights? Are you sure they weren't just lanterns?
-    - That's what I thought at first, but they were moving around deep in the forest.
-    - Did you see anyone?
-    - No. Every time I got close, the lights disappeared.
-    - That's strange. Did you find anything else?
-    - I found this near the old road. I don't know what it is.
+    - Hey! Excuse me, can I ask you something?
+    - Sure. What do you need?
+    - I'm new around here. The mayor sent me out to explore the area and get to know
+      the surroundings.
+    - Ah, I see. Well, you've come to a pretty quiet part of town.
+    - Yeah, I've noticed. Do you live around here?
+    - Not too far from here. I come to the forest quite often.
+    - Is there anything interesting around here that I should know about?
+    - Nothing too exciting. Although... I could use some help with something.
+    - What happened?
+    - I lost my bag somewhere around here.
+    - You lost your bag?
+    - Yeah. I had it with me when I came into the forest, but I can't remember where
+      I left it.
+    - Do you remember where you last saw it?
+    - I think it was somewhere near that old tree.
+    - Alright, I'll help you look for it. I might as well explore the area while
+      I'm at it.
+    - That would be great. Thanks!
     questRequirement: 0
     requiredQuest: {fileID: 0}
     givesQuest: 1
-    questToGive: {fileID: 11400000, guid: 2945cab06bb6b394fb6da8fca0640cbb, type: 2}
+    questToGive: {fileID: 11400000, guid: 1ac3f85eacd631d498a17220f7b4ebfc, type: 2}
     completed: 0
-  - dialogueName: Major
+  - dialogueName: Person in the forest
     dialogueLines:
-    - Found him? What did he said?
-    - 
-    - 
-    questRequirement: 3
-    requiredQuest: {fileID: 11400000, guid: 2945cab06bb6b394fb6da8fca0640cbb, type: 2}
-    givesQuest: 0
-    questToGive: {fileID: 0}
+    - You found it! I was looking everywhere for that.
+    - It was lying near the old tree.
+    - Thanks for bringing it back.
+    - No problem.
+    questRequirement: 0
+    requiredQuest: {fileID: 0}
+    givesQuest: 1
+    questToGive: {fileID: 11400000, guid: 1ac3f85eacd631d498a17220f7b4ebfc, type: 2}
     completed: 0
   InteractDistance: 3
   inInteractionRange: 0
@@ -418473,13 +418633,73 @@ Transform:
   m_GameObject: {fileID: 2146541826}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.95, y: -6.5, z: 0}
+  m_LocalPosition: {x: -67.1, y: -45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1471850541}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &920400525585654192
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3004189704490230329, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -94.57475
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004189704490230329, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -52.15456
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004189704490230329, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004189704490230329, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004189704490230329, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004189704490230329, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004189704490230329, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004189704490230329, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004189704490230329, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3004189704490230329, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8261894037448708706, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+      propertyPath: m_Name
+      value: Bag
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3330985376685482868, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
 --- !u!1001 &3245704308141580622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -418623,7 +418843,7 @@ PrefabInstance:
     - target: {fileID: 5456125296430964687, guid: 177b27834f4f80c42834318bdc179043, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 6853316077166303748, guid: b5ab4a8c42661a5428dea63b89d68aec, type: 3}
+      objectReference: {fileID: -5034061168752090764, guid: 2c724024d13622b4bb811eb4e052c946, type: 3}
     - target: {fileID: 6939815996111125652, guid: 177b27834f4f80c42834318bdc179043, type: 3}
       propertyPath: m_SizeDelta.x
       value: 28.2052
@@ -418859,3 +419079,5 @@ SceneRoots:
   - {fileID: 1952882862}
   - {fileID: 1384830528}
   - {fileID: 2099099423}
+  - {fileID: 1651034787}
+  - {fileID: 920400525585654192}

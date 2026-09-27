@@ -1,12 +1,23 @@
+using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance;
 
+    public GameObject questTextBox;
+    public TMP_Text questTitle;
+    public TMP_Text questState;
+    
     public List<QuestRuntime> activeQuests = new List<QuestRuntime>();
     public List<QuestRuntime> completedQuests = new List<QuestRuntime>();
+
+    private void Start()
+    {
+        questTextBox.SetActive(false);
+    }
 
     private void Awake()
     {
@@ -32,7 +43,9 @@ public class QuestManager : MonoBehaviour
         }
 
         activeQuests.Add(new QuestRuntime(quest));
-        Debug.Log("Quest started: " + quest.questName);
+        
+        questTextBox.SetActive(true);
+        questTitle.text = "Quest started: " + quest.questName;
     }
 
     public QuestState GetQuestState(QuestData quest)
@@ -199,6 +212,7 @@ public class QuestManager : MonoBehaviour
         activeQuests.Remove(q);
         completedQuests.Add(q);
 
-        Debug.Log("Quest completed: " + q.quest.questName);
+        questTextBox.SetActive(true);
+        questTitle.text = "Quest completed: " +  q.quest.name;
     }
 }

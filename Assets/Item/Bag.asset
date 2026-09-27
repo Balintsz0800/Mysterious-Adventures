@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfc2924ab1ab4e4a8b53beb3dbf9969, type: 3}
+  m_Name: Bag
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  itemType: 3
+  itemPrefab: {fileID: 8261894037448708706, guid: 3121e6f3927db7448a16a999672bf7ed, type: 3}
+  handPrefab: {fileID: 0}
+  durability: 0
+  stackable: 0
+  image: {fileID: 0}

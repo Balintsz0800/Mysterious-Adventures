@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: log & fence_3
+  m_Name: fence_2
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
-  m_Sprite: {fileID: -3362698178982169635, guid: f97bc360edf8757468485904bae15353, type: 3}
+  m_Sprite: {fileID: 726259008610650635, guid: 1aca8d3479f4bb041bd45bfcfdc2a3ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

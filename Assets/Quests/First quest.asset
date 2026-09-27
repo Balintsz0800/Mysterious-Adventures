@@ -21,5 +21,10 @@ MonoBehaviour:
     targetID: Forest guy
     item: {fileID: 0}
     requiredAmount: 0
+  - objectiveType: 0
+    description: Talk with the Major
+    targetID: Major
+    item: {fileID: 0}
+    requiredAmount: 0
   rewardMoney: 0
   rewardItems: []

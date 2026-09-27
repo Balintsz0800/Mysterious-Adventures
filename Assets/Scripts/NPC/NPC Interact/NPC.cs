@@ -4,7 +4,7 @@ public class NPC : MonoBehaviour
 {
     public GameObject interactText;
     [SerializeField] private NPCDialogue dialogue;
-
+    public string npcID;
     private NPCRelationships npcRelationships;
 
     private void Start()

@@ -18,7 +18,12 @@ MonoBehaviour:
   objectives:
   - objectiveType: 0
     description: Talk with an NPC
-    target: {fileID: 0}
+    targetID: 
+    item: {fileID: 0}
+    requiredAmount: 0
+  - objectiveType: 0
+    description: Talk with the Major
+    targetID: 
     item: {fileID: 0}
     requiredAmount: 0
   rewardMoney: 0

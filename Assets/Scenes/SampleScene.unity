@@ -7524,6 +7524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPC
   interactText: {fileID: 1300625238}
   dialogue: {fileID: 0}
+  npcID: 
 --- !u!114 &1084034773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7560,74 +7561,19 @@ MonoBehaviour:
     - Welcome to our city, which is currently under construction, so you wont run
       into any local residents right now though you can already find a forest to
       the Southwest.
-    - Test coming
+    - Go visit the forest and talk to the person you find there.
     questRequirement: 0
     requiredQuest: {fileID: 0}
     givesQuest: 1
-    questToGive: {fileID: 0}
+    questToGive: {fileID: 11400000, guid: 2945cab06bb6b394fb6da8fca0640cbb, type: 2}
     completed: 0
   - dialogueName: Major
     dialogueLines:
-    - First step go look after the forst on Southwest.
-    - GO! GO! GO!
-    - And than look araund where the mine will be located, which will be in the northwest,
-      the village will be in the norheast, and finally the field will be located
-      in the southwest.
-    questRequirement: 0
-    requiredQuest: {fileID: 0}
-    givesQuest: 0
-    questToGive: {fileID: 0}
-    completed: 0
-  - dialogueName: Major
-    dialogueLines:
-    - 'The lore: The vally that forget how to grow
-
-      The story takes place in
-      a distant land of villages, towns, fertile fields, dense forsts, and forgotten
-      mines waiting to be explored. The player arrives at a small, abandoned farm.'
-    - that was once the most important in the region The locals say the soil has
-      brown less fertile with every passing year, the forest paths keep changing,
-      and strange creatures have begun emerging from deep inside the mines.
-    - 'Old legends tell of the WORLDROOT: a vast underground force that connects
-      the land and gives  life to its plants, animals, and people. Long ago, the
-      people of valley respected and cared fot it. but as the settlements grew, the
-      mines dug deeper, '
-    - 'and old paths disappeared beneatd the forest, the Worldroot began to weaken.
-      The balance of the valley was lost. The filds became exhausted, animals grew
-      restless, and hidden corner of the world turned dangerous. '
-    - The player1s task is to bring the farm back to life while getting to know the
-      surrounding region. Farming is more than earning money healthy crops help feed
-      the settlements, and special plants can help restore neglected areas.
-    - 'Money from harvests can be used to improve tools, build new structures and
-      craft equipment for exploring distant places. '
-    questRequirement: 0
-    requiredQuest: {fileID: 0}
-    givesQuest: 0
-    questToGive: {fileID: 0}
-    completed: 0
-  - dialogueName: Major
-    dialogueLines:
-    - 'The people of the valley
-
-      The valley is home to several different communities,
-      each whit its own story.
-
-      Berekfalva is a small village on norheast.
-      Its people know great deal about great herbs and animals, but the changing
-      forest makes life harder for them '
-    - 'Rivermarket is the center of trade and shop. Here the player can find different
-      shops for example: big market, tool upgrader ect... and nwes from faraway places.'
+    - Found him? What did he said?
     - 
-    - 'and old paths disappeared beneatd the forest, the Worldroot began to weaken.
-      The balance of the valley was lost. The filds became exhausted, animals grew
-      restless, and hidden corner of the world turned dangerous. '
-    - The player1s task is to bring the farm back to life while getting to know the
-      surrounding region. Farming is more than earning money healthy crops help feed
-      the settlements, and special plants can help restore neglected areas.
-    - 'Money from harvests can be used to improve tools, build new structures and
-      craft equipment for exploring distant places. '
-    questRequirement: 0
-    requiredQuest: {fileID: 0}
+    - 
+    questRequirement: 3
+    requiredQuest: {fileID: 11400000, guid: 2945cab06bb6b394fb6da8fca0640cbb, type: 2}
     givesQuest: 0
     questToGive: {fileID: 0}
     completed: 0

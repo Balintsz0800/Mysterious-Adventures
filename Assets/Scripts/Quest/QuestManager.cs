@@ -69,7 +69,7 @@ public class QuestManager : MonoBehaviour
                     continue;
                 }
 
-                if (objective.target == npc.gameObject)
+                if (objective.targetID == npc.npcID)
                 {
                     q.AddProgress(i, 1);
                     CheckQuest(q);
@@ -100,7 +100,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void OnLocationReached(GameObject location)
+    public void OnLocationReached(string location)
     {
         foreach (QuestRuntime q in activeQuests)
         {
@@ -113,7 +113,7 @@ public class QuestManager : MonoBehaviour
                     continue;
                 }
 
-                if (objective.target == location)
+                if (objective.targetID == location)
                 {
                     q.AddProgress(i, 1);
                     CheckQuest(q);
@@ -122,7 +122,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void OnInteract(GameObject target)
+    public void OnInteract(string target)
     {
         foreach (QuestRuntime q in activeQuests)
         {
@@ -135,7 +135,7 @@ public class QuestManager : MonoBehaviour
                     continue;
                 }
 
-                if (objective.target == target)
+                if (objective.targetID == target)
                 {
                     q.AddProgress(i, 1);
                     CheckQuest(q);
@@ -166,7 +166,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void OnKill(GameObject enemy)
+    public void OnKill(string enemy)
     {
         foreach (QuestRuntime q in activeQuests)
         {
@@ -179,7 +179,7 @@ public class QuestManager : MonoBehaviour
                     continue;
                 }
 
-                if (objective.target == enemy)
+                if (objective.targetID == enemy)
                 {
                     q.AddProgress(i, 1);
                     CheckQuest(q);

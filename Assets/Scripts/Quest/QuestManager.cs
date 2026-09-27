@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,7 +10,6 @@ public class QuestManager : MonoBehaviour
 
     public GameObject questTextBox;
     public TMP_Text questTitle;
-    public TMP_Text questState;
     
     public List<QuestRuntime> activeQuests = new List<QuestRuntime>();
     public List<QuestRuntime> completedQuests = new List<QuestRuntime>();
@@ -46,6 +46,7 @@ public class QuestManager : MonoBehaviour
         
         questTextBox.SetActive(true);
         questTitle.text = "Quest started: " + quest.questName;
+        StartCoroutine(HideAfterDelay(2f));
     }
 
     public QuestState GetQuestState(QuestData quest)
@@ -214,5 +215,12 @@ public class QuestManager : MonoBehaviour
 
         questTextBox.SetActive(true);
         questTitle.text = "Quest completed: " +  q.quest.name;
+        StartCoroutine(HideAfterDelay(2f));
+    }
+
+    public IEnumerator HideAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        questTextBox.SetActive(false);
     }
 }

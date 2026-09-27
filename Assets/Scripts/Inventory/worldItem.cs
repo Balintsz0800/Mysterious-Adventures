@@ -11,12 +11,7 @@ public class worldItem : MonoBehaviour
 
         if (invManager.AddItem(item, amount))
         {
-            if (QuestManager.Instance != null)
-            {
-                QuestManager.Instance.OnItemCollected(item, amount);
-                Destroy(gameObject);
-            }
-
+            QuestManager.Instance.OnItemCollected(item, amount);
             Destroy(gameObject);
         }
     }

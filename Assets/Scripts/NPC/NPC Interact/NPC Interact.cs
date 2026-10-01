@@ -52,4 +52,9 @@ public class NPCInteract : MonoBehaviour
             }
         }
     }
+
+    public void GiveRequestedItem(NPC npc, Item item, int amount)
+    {
+        
+    }
 }

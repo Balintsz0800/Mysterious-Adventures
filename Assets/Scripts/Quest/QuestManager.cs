@@ -201,6 +201,30 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    public void OnDeliverItem(NPC npc, Item item, int amount)
+    {
+        for (int quest = activeQuests.Count - 1; quest >= 0; quest--)
+        {
+            QuestRuntime q = activeQuests[quest];
+
+            for (int i = 0; i < q.quest.objectives.Count; i++)
+            {
+                QuestObjective objective = q.quest.objectives[i];
+
+                if (objective.objectiveType != QuestObjectiveType.DeliverItem)
+                {
+                    continue;
+                }
+
+                if (objective.targetID == npc.npcID && objective.item == item)
+                {
+                    q.AddProgress(i, 1);
+                    CheckQuest(q);
+                }
+            }
+        }
+    }
+
     private void CheckQuest(QuestRuntime q)
     {
         if (!q.IsComplete())

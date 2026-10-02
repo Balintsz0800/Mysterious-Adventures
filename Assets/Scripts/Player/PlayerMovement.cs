@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     private float lastHorizontalVector;
     private float lastVerticalVector;
-    private Vector3 movementVector;
+    public Vector3 movementVector;
     Rigidbody2D rb;
     
     Animation anim;

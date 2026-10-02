@@ -6,6 +6,8 @@ using UnityEngine.Rendering.Universal;
 
 public class DayNightTimer : MonoBehaviour
 {
+    public static DayNightTimer Instance;
+
     [Header("Settings")]
     [SerializeField] private float dayLength = 300f;
     [SerializeField] private float currentTime = 10f;
@@ -52,6 +54,11 @@ public class DayNightTimer : MonoBehaviour
         UpdateDayTime();
         light.intensity = Mathf.Lerp(light.intensity, targetIntensity, lightChangeSpeed * Time.deltaTime);
         timeText.text = currentTimeText;
+    }
+
+    void Awake()
+    {
+        Instance = this;
     }
 
     void UpdateDayTime()

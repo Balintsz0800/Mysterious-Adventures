@@ -36,8 +36,8 @@ public class NPCSchedul : MonoBehaviour
             return;
         }
 
-        int currentHour = DayNightTimer.Instance.hour;
-        int currentMinute = DayNightTimer.Instance.hour;
+        int currentHour = DayNightTimer.Instance.CurrentHour;
+        int currentMinute = DayNightTimer.Instance.CurrentMinute;
 
         ScheduleEntry newEntry = GetCurrentSchedule(currentHour, currentMinute);
 

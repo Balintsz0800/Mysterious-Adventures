@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 21980754}
   - component: {fileID: 21980757}
   - component: {fileID: 21980758}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5601,7 +5601,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 779606136}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Drop point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8009,10 +8009,13 @@ GameObject:
   - component: {fileID: 1084034771}
   - component: {fileID: 1084034770}
   - component: {fileID: 1084034769}
+  - component: {fileID: 1084034778}
   - component: {fileID: 1084034772}
   - component: {fileID: 1084034773}
   - component: {fileID: 1084034774}
   - component: {fileID: 1084034775}
+  - component: {fileID: 1084034777}
+  - component: {fileID: 1084034776}
   m_Layer: 6
   m_Name: NPC (1)
   m_TagString: Untagged
@@ -8103,7 +8106,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 3653733353186238094, guid: 7b29cac8974745a49b35f001966815b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8124,7 +8127,7 @@ Transform:
   m_GameObject: {fileID: 1084034768}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.675, y: -0.367, z: 0}
+  m_LocalPosition: {x: -16.14, y: 1.22, z: 0}
   m_LocalScale: {x: 7.15568, y: 7.03537, z: 4.010357}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8222,6 +8225,65 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1084034776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084034768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed562de65a48a94da476035c03a7180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCSchedul
+  schedule:
+  - hour: 7
+    minute: 40
+    destination: {fileID: 0}
+    randomMovement: 0
+    randomRadius: 20
+--- !u!114 &1084034777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084034768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289f52b9d04423443ad03d7d3aed0d3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCMovement
+  speed: 6
+  stoppingDistance: 0.05
+--- !u!50 &1084034778
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084034768}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1000
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &1085348760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -410154,7 +410216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightTimer
   dayLength: 300
-  currentTime: 17.5
+  currentTime: 7.5
   timeText: {fileID: 716147431}
   light: {fileID: 619394801}
   lightChangeSpeed: 1

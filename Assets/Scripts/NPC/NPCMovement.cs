@@ -82,7 +82,7 @@ public class NPCMovement : MonoBehaviour
         Vector2 direction = (randomTarget - (Vector2)transform.position).normalized;
         float distance = Vector2.Distance(transform.position, randomTarget);
 
-        if (distance <= stoppingDistance);
+        if (distance <= stoppingDistance)
         {
             SetRandomTarget();
             return;

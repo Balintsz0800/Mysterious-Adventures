@@ -530,7 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FootSpeps
   tilemap: {fileID: 1553906672}
   audioSource: {fileID: 768033570}
-  GrassStep: {fileID: 8300000, guid: 93d61d8c5248f1442aa2ac1db9641d89, type: 3}
+  GrassStep: {fileID: 8300000, guid: 308f52a37755f034a810a21aff865bf0, type: 3}
   DirtStep: {fileID: 8300000, guid: 7aa5bdf838ef5b745a4e73ed9f3957b4, type: 3}
   StoneStep: {fileID: 8300000, guid: f2cb2f3f3f7d9134d88a30d8916b3887, type: 3}
   stepInterval: 0.3
@@ -5296,9 +5296,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 93d61d8c5248f1442aa2ac1db9641d89, type: 3}
+  m_Resource: {fileID: 8300000, guid: 308f52a37755f034a810a21aff865bf0, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.353
+  m_Volume: 0.329
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5395,7 +5395,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: f2cb2f3f3f7d9134d88a30d8916b3887, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.337
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5492,7 +5492,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 7aa5bdf838ef5b745a4e73ed9f3957b4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.36
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -406681,7 +406681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1651034786
 AudioSource:
   m_ObjectHideFlags: 0

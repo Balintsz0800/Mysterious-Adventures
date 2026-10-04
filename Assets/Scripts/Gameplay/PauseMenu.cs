@@ -4,6 +4,7 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject optionsMenu;
 
     private void Start()
     {
@@ -12,9 +13,14 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !optionsMenu.activeSelf)
         {
             ESCMEnu();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && optionsMenu.activeSelf)
+        {
+            OptionsMenu();
         }
     }
 
@@ -30,5 +36,28 @@ public class PauseMenu : MonoBehaviour
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
         }
+    }
+
+    public void Resume()
+    {
+        ESCMEnu();
+    }
+
+    public void OptionsMenu()
+    {
+        if (!optionsMenu.activeSelf)
+        {
+            optionsMenu.SetActive(true);
+        }
+        else if (optionsMenu.activeSelf)
+        {
+            optionsMenu.SetActive(false);
+        }
+    }
+    
+    public void Quit()
+    {    
+        SaveManager.Instance.SaveWorld();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene");
     }
 }

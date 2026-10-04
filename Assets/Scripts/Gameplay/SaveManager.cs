@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    public static SaveManager instance;
+    public static SaveManager Instance;
 
     [SerializeField] private int slotCount = 3;
     
@@ -13,7 +13,7 @@ public class SaveManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -36,7 +36,7 @@ public class SaveManager : MonoBehaviour
         data.slot = slot;
         data.worldName = "World" + (slot + 1);
         data.lastPlayed = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
-        data.playtime = 0f;
+        data.playtime =  0f;
         
         SaveDataToFile(data);
 
@@ -60,9 +60,6 @@ public class SaveManager : MonoBehaviour
         
         CurrentSlot = slot;
         playtimeTimer = data.playtime;
-        data.lastPlayed = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
-        
-        SaveDataToFile(data);
     }
 
     public void SaveWorld()
@@ -106,7 +103,14 @@ public class SaveManager : MonoBehaviour
 
     private string GetSavePath(int slot)
     {
-        return Path.Combine(Application.persistentDataPath, "save" + slot + ".json");
+        string saveFolder = Path.Combine(Application.persistentDataPath, "Saves");
+
+        if (!Directory.Exists(saveFolder))
+        {
+            Directory.CreateDirectory(saveFolder);
+        }
+        
+        return Path.Combine(saveFolder, "save" + slot + ".json");
     }
 
     public SaveData GetSlotData(int slot)

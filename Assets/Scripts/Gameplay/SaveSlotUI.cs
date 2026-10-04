@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SaveSlotUI : MonoBehaviour
 {
-    private int slot;
+    [SerializeField] private int slot;
 
     [SerializeField] private TMP_Text worldName;
     [SerializeField] private TMP_Text playtimeText;
@@ -20,7 +20,7 @@ public class SaveSlotUI : MonoBehaviour
 
     private void UpdateSlotUI()
     {
-        SaveData data = SaveManager.instance.GetSlotData(slot);
+        SaveData data = SaveManager.Instance.GetSlotData(slot);
 
         if (data == null)
         {
@@ -46,18 +46,19 @@ public class SaveSlotUI : MonoBehaviour
 
     public void CreateWorld()
     {
-        SaveManager.instance.CreateWorld(slot);
+        SaveManager.Instance.CreateWorld(slot);
         LoadGameScene();
     }
 
     public void LoadWorld()
     {
-        SaveManager.instance.LoadWorld(slot);
+        SaveManager.Instance.LoadWorld(slot);
         LoadGameScene();
     }
 
     private void LoadGameScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1f;
     }
 }

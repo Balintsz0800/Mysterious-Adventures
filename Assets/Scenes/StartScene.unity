@@ -484,6 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c92687ae506b04d9a8540ef369eca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveSlotUI
+  slot: 2
   worldName: {fileID: 1552600732}
   playtimeText: {fileID: 225545529}
   lastPlayedText: {fileID: 1639232192}
@@ -1146,7 +1147,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 711077359}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 950870270}
+        m_TargetAssemblyTypeName: StartScene, Assembly-CSharp
+        m_MethodName: Options
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &711077359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1379,6 +1392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c92687ae506b04d9a8540ef369eca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveSlotUI
+  slot: 1
   worldName: {fileID: 415873722}
   playtimeText: {fileID: 1591893146}
   lastPlayedText: {fileID: 1419159184}
@@ -1614,6 +1628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 950870269}
   - component: {fileID: 950870268}
+  - component: {fileID: 950870270}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1650,6 +1665,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &950870270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950870267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89fec14104071a84f8cd298ff06a7cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayButton
+  anim: {fileID: 234161283}
+  currentWindow: {fileID: 0}
+  mainButtons: {fileID: 597091256}
+  playUI: {fileID: 338081170}
+  optionsMenu: {fileID: 806495641}
 --- !u!1 &994126266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,7 +1730,6 @@ GameObject:
   - component: {fileID: 1031137756}
   - component: {fileID: 1031137755}
   - component: {fileID: 1031137754}
-  - component: {fileID: 1031137757}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -1769,8 +1800,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1031137757}
-        m_TargetAssemblyTypeName: PlayButton, Assembly-CSharp
+      - m_Target: {fileID: 950870270}
+        m_TargetAssemblyTypeName: StartScene, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -1819,20 +1850,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031137752}
   m_CullTransparentMesh: 1
---- !u!114 &1031137757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1031137752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89fec14104071a84f8cd298ff06a7cf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayButton
-  mainButtons: {fileID: 597091256}
-  playUI: {fileID: 338081170}
 --- !u!1 &1173289770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,7 +2143,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1232822890}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 950870270}
+        m_TargetAssemblyTypeName: MainButtons, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1232822890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2858,6 +2887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c92687ae506b04d9a8540ef369eca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveSlotUI
+  slot: 0
   worldName: {fileID: 1324378083}
   playtimeText: {fileID: 1227248096}
   lastPlayedText: {fileID: 485438595}

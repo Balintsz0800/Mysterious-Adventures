@@ -412,7 +412,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -9177,8 +9177,6 @@ MonoBehaviour:
   - dialogueName: Mayor
     dialogueLines:
     - Found him? What did he said?
-    - 
-    - 
     questRequirement: 3
     requiredQuest: {fileID: 11400000, guid: 2945cab06bb6b394fb6da8fca0640cbb, type: 2}
     givesQuest: 0
@@ -411863,7 +411861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 834db85c93b4b6342a0efc8a8f62d887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightTimer
-  dayLength: 300
+  dayLength: 600
   currentTime: 7.5
   timeText: {fileID: 716147431}
   light: {fileID: 619394801}

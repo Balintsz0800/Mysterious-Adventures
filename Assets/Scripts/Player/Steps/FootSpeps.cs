@@ -54,6 +54,7 @@ public class FootSpeps : MonoBehaviour
 
         if (tileName.Contains("grass"))
         {
+            stepInterval = 0.45f;
             audioSource.clip = GrassStep;
         }
         else if (tileName.Contains("dirt"))

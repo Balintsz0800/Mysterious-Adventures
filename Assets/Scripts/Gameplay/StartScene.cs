@@ -24,7 +24,7 @@ public class StartScene : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (currentWindow.activeSelf)
+            if (currentWindow != null && currentWindow.activeSelf)
             {
                 currentWindow.SetActive(false);
                 mainButtons.SetActive(true);

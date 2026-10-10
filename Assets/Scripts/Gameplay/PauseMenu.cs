@@ -5,10 +5,15 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
+    private GameObject player;
+    public GameObject audio;
+    public GameObject inv;
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         pauseMenu.SetActive(false);
+        optionsMenu.SetActive(false);
     }
 
     void Update()
@@ -28,11 +33,17 @@ public class PauseMenu : MonoBehaviour
     {
         if (!pauseMenu.activeSelf)
         {
+            inv.SetActive(false);
+            audio.SetActive(false);
+            player.GetComponent<PlayerMovement>().enabled = false;
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
         }
         else if (pauseMenu.activeSelf)
         {
+            inv.SetActive(true);
+            audio.SetActive(true);
+            player.GetComponent<PlayerMovement>().enabled = true;
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
         }

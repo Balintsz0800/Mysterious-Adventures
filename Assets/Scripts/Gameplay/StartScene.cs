@@ -16,7 +16,6 @@ public class StartScene : MonoBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
         anim.SetTrigger("Start");
     }
 

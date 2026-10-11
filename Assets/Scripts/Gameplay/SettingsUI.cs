@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,23 +11,34 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
     
+    [SerializeField] private TMP_Dropdown outputDeviceDropdown;
+    
     [Header("Graphics UI")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private TMP_Dropdown displayModeDropdown;
+    [SerializeField] private TMP_Dropdown fpsLimitDropdown;
     [SerializeField] private Toggle vSyncToggle;
     
-    private List<Resolution> resolutions = new List<Resolution>();
+    private SettingsManager settingsManager;
 
     private void Start()
     {
+        settingsManager = SettingsManager.Instance;
+        
+        if (settingsManager == null)
+        {
+            return;
+        }
+        
         SetupResolutionOptions();
         SetupDisplayModeOptions();
+        SetupFPSOptions();
+        SetupAudioDeviceOptions();
         SetupAudioSliders();
 
         if (vSyncToggle != null)
         {
-            vSyncToggle.SetIsOnWithoutNotify(SettingsManager.Instance.VSyncEnabled);
-            vSyncToggle.onValueChanged.AddListener(OnVSyncChanged);
+            vSyncToggle.SetIsOnWithoutNotify(settingsManager.vSyncEnabled);
         }
     }
 
@@ -34,19 +46,19 @@ public class SettingsUI : MonoBehaviour
     {
         if (masterVolumeSlider != null)
         {
-            masterVolumeSlider.SetValueWithoutNotify(SettingsManager.Instance.MasterVolume);
+            masterVolumeSlider.SetValueWithoutNotify(SettingsManager.Instance.masterVolume);
             masterVolumeSlider.onValueChanged.AddListener(SettingsManager.Instance.SetMasterVolume);
         }
 
         if (musicVolumeSlider != null)
         {
-            musicVolumeSlider.SetValueWithoutNotify(SettingsManager.Instance.MusicVolume);
+            musicVolumeSlider.SetValueWithoutNotify(SettingsManager.Instance.musicVolume);
             musicVolumeSlider.onValueChanged.AddListener(SettingsManager.Instance.SetMusicVolume);
         }
 
         if (sfxVolumeSlider != null)
         {
-            sfxVolumeSlider.SetValueWithoutNotify(SettingsManager.Instance.SoundsVolume);
+            sfxVolumeSlider.SetValueWithoutNotify(SettingsManager.Instance.soundsVolume);
             sfxVolumeSlider.onValueChanged.AddListener(SettingsManager.Instance.SetSoundsVolume);
         }
     }
@@ -58,50 +70,18 @@ public class SettingsUI : MonoBehaviour
             return;
         }
         
-        resolutions.Clear();
         resolutionDropdown.ClearOptions();
         
-        Resolution[] systemResolutions = Screen.resolutions;
         List<string> options = new List<string>();
-        int currentResolutionIndex = 0;
+        List<Resolution> resolutions = settingsManager.availableResolutions;
 
-        for (int i = 0; i < systemResolutions.Length; i++)
+        for (int i = 0; i < resolutions.Count; i++)
         {
-            Resolution resolution = systemResolutions[i];
-            bool duplicate = false;
-
-            for (int x = 0; x < resolutions.Count; x++)
-            {
-                if (resolutions[x].width == resolution.width && resolutions[x].height == resolution.height)
-                {
-                    duplicate = true;
-                    break;
-                }
-            }
-
-            if (duplicate)
-            {
-                continue;
-            }
-            
-            resolutions.Add(resolution);
-            options.Add(resolution.width + " x " + resolution.height);
-
-            if (resolution.width == Screen.width && resolution.height == Screen.height)
-            {
-                currentResolutionIndex = resolutions.Count - 1;
-            }
+            options.Add(resolutions[i].width + " x " + resolutions[i].height);
         }
         
         resolutionDropdown.AddOptions(options);
-
-        int savedRes = SettingsManager.Instance.SelectedResolution;
-        if (savedRes < 0 || savedRes >= resolutions.Count)
-        {
-            savedRes = currentResolutionIndex;
-        }
-        
-        resolutionDropdown.SetValueWithoutNotify(savedRes);
+        resolutionDropdown.SetValueWithoutNotify(settingsManager.selectedResolution);
         resolutionDropdown.RefreshShownValue();
     }
 
@@ -115,27 +95,109 @@ public class SettingsUI : MonoBehaviour
         displayModeDropdown.ClearOptions();
         displayModeDropdown.AddOptions(new List<string>{"Fullscreen", "BorderLess", "Windowed"});
         
-        int savedMode = Mathf.Clamp(SettingsManager.Instance.SelectedDisplayMode, 0, 2);
-        displayModeDropdown.SetValueWithoutNotify(savedMode);
+        displayModeDropdown.SetValueWithoutNotify(settingsManager.selectedDisplayMode);
         displayModeDropdown.RefreshShownValue();
+    }
+
+    private void SetupFPSOptions()
+    {
+        if (fpsLimitDropdown == null)
+        {
+            return;
+        }
+        
+        fpsLimitDropdown.ClearOptions();
+        fpsLimitDropdown.AddOptions(new List<string> {"30 FPS", "60 FPS", "120 FPS", "240 FPS", "Unlimited"});
+        
+        fpsLimitDropdown.SetValueWithoutNotify(settingsManager.GetSavedFPSLimitIndex());
+        fpsLimitDropdown.RefreshShownValue();
+    }
+
+    private void SetupAudioDeviceOptions()
+    {
+        if (outputDeviceDropdown == null)
+        {
+            return;
+        }
+        
+        outputDeviceDropdown.ClearOptions();
+        outputDeviceDropdown.AddOptions(new List<string> {"System Default"});
+        
+        outputDeviceDropdown.SetValueWithoutNotify(0);
+        outputDeviceDropdown.RefreshShownValue();
+        outputDeviceDropdown.interactable = false;
     }
 
     public void ApplyChanges()
     {
-        int resIndex = resolutionDropdown != null ? resolutionDropdown.value : SettingsManager.Instance.SelectedResolution;
-        int displayMode = displayModeDropdown != null ? displayModeDropdown.value : SettingsManager.Instance.SelectedDisplayMode;
-        bool vSync = vSyncToggle != null ? vSyncToggle.isOn : SettingsManager.Instance.VSyncEnabled;
+        if (settingsManager == null)
+        {
+            return;
+        }
+        
+        int resIndex = resolutionDropdown != null ? resolutionDropdown.value : settingsManager.selectedResolution;
+        int displayMode = displayModeDropdown != null ? displayModeDropdown.value : settingsManager.selectedDisplayMode;
+        bool vSync = vSyncToggle != null ? vSyncToggle.isOn : settingsManager.vSyncEnabled;
+        int fpsLimit = fpsLimitDropdown != null ? fpsLimitDropdown.value : settingsManager.selectedFPSLimit;
 
-        SettingsManager.Instance.SaveGraphicsSettings(resIndex, displayMode, vSync);
+        settingsManager.SaveGraphicsSettings(resIndex, displayMode, vSync, fpsLimit);
     }
 
-    private void OnVSyncChanged(bool enabled)
+    public void ResetSettings()
     {
-        ApplyChanges();
+        if (settingsManager == null)
+        {
+            return;
+        }
+        
+        settingsManager.ResetSettings();
+
+        if (masterVolumeSlider != null)
+        {
+            masterVolumeSlider.SetValueWithoutNotify(settingsManager.masterVolume);
+        }
+
+        if (musicVolumeSlider != null)
+        {
+            musicVolumeSlider.SetValueWithoutNotify(settingsManager.musicVolume);
+        }
+
+        if (sfxVolumeSlider != null)
+        {
+            sfxVolumeSlider.SetValueWithoutNotify(settingsManager.soundsVolume);
+        }
+
+        if (resolutionDropdown != null)
+        {
+            resolutionDropdown.SetValueWithoutNotify(settingsManager.selectedResolution);
+            resolutionDropdown.RefreshShownValue();
+        }
+
+        if (displayModeDropdown != null)
+        {
+            displayModeDropdown.SetValueWithoutNotify(settingsManager.selectedDisplayMode);
+            displayModeDropdown.RefreshShownValue();
+        }
+
+        if (fpsLimitDropdown != null)
+        {
+            fpsLimitDropdown.SetValueWithoutNotify(settingsManager.selectedFPSLimit);
+            fpsLimitDropdown.RefreshShownValue();
+        }
+
+        if (vSyncToggle != null)
+        {
+            vSyncToggle.SetIsOnWithoutNotify(settingsManager.vSyncEnabled);
+        }
     }
 
     private void OnDestroy()
     {
+        if (settingsManager == null)
+        {
+            return;
+        }
+        
         if (masterVolumeSlider != null)
         {
             masterVolumeSlider.onValueChanged.RemoveListener(SettingsManager.Instance.SetMasterVolume);
@@ -149,11 +211,6 @@ public class SettingsUI : MonoBehaviour
         if (sfxVolumeSlider != null)
         {
             sfxVolumeSlider.onValueChanged.RemoveListener(SettingsManager.Instance.SetSoundsVolume);
-        }
-
-        if (vSyncToggle != null)
-        {
-            vSyncToggle.onValueChanged.RemoveListener(OnVSyncChanged);
         }
     }
 }

@@ -62,6 +62,14 @@ public class PauseMenu : MonoBehaviour
             optionsMenu.SetActive(false);
         }
     }
+
+    public void SaveButton()
+    {
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.SaveWorld();
+        }
+    }
     
     public void Quit()
     {    

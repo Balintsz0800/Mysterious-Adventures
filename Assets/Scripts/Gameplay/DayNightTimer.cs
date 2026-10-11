@@ -31,7 +31,6 @@ public class DayNightTimer : MonoBehaviour
         {
             int hour = Mathf.FloorToInt(currentTime);
             int minute = Mathf.FloorToInt((currentTime - hour) * 60);
-            
             return hour.ToString("00") + ":" + minute.ToString("00");
         }
     }

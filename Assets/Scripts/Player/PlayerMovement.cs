@@ -1,3 +1,5 @@
+using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -6,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Movement")]
     [SerializeField] private float speed;
+    [SerializeField] private float runSpeed;
+    [SerializeField] private float staminaRegenSpeed = 5;
     private float lastHorizontalVector;
     private float lastVerticalVector;
     public Vector3 movementVector;
@@ -37,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     {
         movementVector.x = Input.GetAxis("Horizontal");
         movementVector.y = Input.GetAxis("Vertical");
+        
+        movementVector = movementVector.normalized;
 
         if (movementVector.x != 0 || movementVector.y != 0)
         {
@@ -49,8 +55,22 @@ public class PlayerMovement : MonoBehaviour
         
         anim.isMoving = movementVector.x != 0 || movementVector.y != 0;
         
-        movementVector *= speed;
-        rb.linearVelocity = movementVector;
+        float currentSpeed = speed;
+        
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            if (anim.isMoving && Player.Instance.currentStamina > 0)
+            {
+                currentSpeed = runSpeed;
+                Player.Instance.currentStamina--;
+            }
+        }
+        else if (Player.Instance.currentStamina < Player.Instance.maxStamina)
+        {
+           Player.Instance.currentStamina += staminaRegenSpeed * Time.deltaTime;
+        }
+        
+        rb.linearVelocity = (movementVector * currentSpeed).normalized;
     }
 
     void LateUpdate()

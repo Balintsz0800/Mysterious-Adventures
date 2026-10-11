@@ -6,7 +6,9 @@ using System.Collections;
  using Random = UnityEngine.Random;
 
  public class NPCMovement : MonoBehaviour
-{
+ {
+     public static NPCMovement instance;
+    
     [Header("Movement")]
     [SerializeField] private float speed = 2f;
     [SerializeField] private float stoppingDistance = 0.05f;
@@ -42,6 +44,8 @@ using System.Collections;
 
     private void Awake()
     {
+        instance = this;
+        
         rb = GetComponent<Rigidbody2D>();
         NPCanim = GetComponent<Animation>();
     }
@@ -208,7 +212,7 @@ using System.Collections;
         }
     }
 
-    private void StopMovement()
+    public void StopMovement()
     {
         rb.linearVelocity = Vector2.zero;
         NPCanim.isMoving = false;

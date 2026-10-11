@@ -6,6 +6,7 @@ public class NPC : MonoBehaviour
     [SerializeField] private NPCDialogue dialogue;
     public string npcID;
     private NPCRelationships npcRelationships;
+    public NPCMovement movement;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class NPC : MonoBehaviour
     {
         if (dialogue != null &&  dialogue.inInteractionRange)
         {
+            movement.StopMovement();
             dialogue.StartDialogue();
         }
 

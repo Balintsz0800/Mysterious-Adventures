@@ -39,21 +39,21 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-        movementVector.x = Input.GetAxis("Horizontal");
-        movementVector.y = Input.GetAxis("Vertical");
+        float movex = Input.GetAxisRaw("Horizontal");
+        float movey = Input.GetAxisRaw("Vertical");
         
-        movementVector = movementVector.normalized;
+        Vector2 inputDir = new Vector2(movex,movey).normalized;
 
-        if (movementVector.x != 0 || movementVector.y != 0)
+        if (inputDir.x != 0 || inputDir.y != 0)
         {
-            anim.horizontal =  movementVector.x;
-            anim.vertical = movementVector.y;
+            anim.horizontal =  inputDir.x;
+            anim.vertical = inputDir.y;
             
-            lastHorizontalVector = movementVector.x;
-            lastVerticalVector = movementVector.y;
+            lastHorizontalVector = inputDir.x;
+            lastVerticalVector = inputDir.y;
         }
         
-        anim.isMoving = movementVector.x != 0 || movementVector.y != 0;
+        anim.isMoving = inputDir.x != 0 || inputDir.y != 0;
         
         float currentSpeed = speed;
         
@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
            Player.Instance.currentStamina += staminaRegenSpeed * Time.deltaTime;
         }
         
-        rb.linearVelocity = (movementVector * currentSpeed).normalized;
+        rb.linearVelocity = inputDir * currentSpeed;
     }
 
     void LateUpdate()

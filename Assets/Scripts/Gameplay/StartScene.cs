@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class StartScene : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
     [SerializeField] private GameObject currentWindow;
     
     [Header("Play button")]
@@ -12,12 +11,6 @@ public class StartScene : MonoBehaviour
     
     [Header("Options button")]
     [SerializeField] private GameObject optionsMenu;
-
-
-    private void Start()
-    {
-        anim.SetTrigger("Start");
-    }
 
     private void Update()
     {

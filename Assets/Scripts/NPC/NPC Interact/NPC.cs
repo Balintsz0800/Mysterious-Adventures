@@ -27,7 +27,11 @@ public class NPC : MonoBehaviour
     {
         if (dialogue != null &&  dialogue.inInteractionRange)
         {
-            movement.StopMovement();
+            if (movement.isWandering)
+            {
+                movement.StopMovement();
+                movement.isWandering = false;
+            }
             dialogue.StartDialogue();
         }
 

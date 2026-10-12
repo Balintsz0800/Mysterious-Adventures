@@ -35,7 +35,7 @@ using System.Collections;
     private Vector2 targetPos;
 
     private bool hasTarget;
-    private bool isWandering;
+    public bool isWandering;
     
     private List<Vector2> path = new List<Vector2>();
     private int pathIndex;

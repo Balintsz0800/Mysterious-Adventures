@@ -8,6 +8,7 @@ public class Animation : MonoBehaviour
     public float horizontal;
     public float vertical;
     public bool isMoving;
+    public bool carrying;
 
     private void Awake()
     {

@@ -14,10 +14,10 @@ public class StartCeneAnims : MonoBehaviour
 
     public void BackgroundAnimEnd()
     {
-        mainButtonsAnim.SetTrigger("Play");
-    }
-    public void MainButtonAnimEnd()
-    {
         textAnim.SetTrigger("Play");
+    }
+    public void TextAnimEnd()
+    {
+        mainButtonsAnim.SetTrigger("Play");
     }
 }

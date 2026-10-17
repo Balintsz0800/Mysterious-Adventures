@@ -13,6 +13,9 @@ public class InvManager : MonoBehaviour
 
     public Transform handPoint;
     private GameObject currentHandItem;
+    public bool carrying;
+
+    public Animation anim;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -256,11 +259,16 @@ public class InvManager : MonoBehaviour
 
         if (invItem != null && invItem.item != null && invItem.item.handPrefab != null)
         {
-            if (handPoint != null)
+            if (handPoint != null &&  invItem.item.carryable)
             {
+                anim.carrying = true;
                 currentHandItem = Instantiate(invItem.item.handPrefab, handPoint);
                 currentHandItem.transform.localPosition = Vector3.zero;
                 currentHandItem.transform.localRotation = Quaternion.identity;
+            }
+            else
+            {
+                anim.carrying = false;
             }
         }
 

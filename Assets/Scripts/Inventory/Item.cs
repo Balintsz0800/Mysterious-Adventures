@@ -8,6 +8,7 @@ public class Item : ScriptableObject
     public GameObject handPrefab;
     public int durability;
     public bool stackable;
+    public bool carryable;
     
     public Sprite image;
 

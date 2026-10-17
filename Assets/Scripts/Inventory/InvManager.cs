@@ -125,6 +125,7 @@ public class InvManager : MonoBehaviour
         if (invItem.count <= 0)
         {
             Destroy(invItem.gameObject);
+            UpdateHand();
         }
         else
         {

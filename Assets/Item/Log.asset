@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bfc2924ab1ab4e4a8b53beb3dbf9969, type: 3}
-  m_Name: TestItem
+  m_Name: Log
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemType: 0
   itemPrefab: {fileID: 7931105662249674576, guid: 184c2a8e4314509489119999c54891fc, type: 3}
-  handPrefab: {fileID: 0}
+  handPrefab: {fileID: 8348207788280538090, guid: 7eadb4150b03e994da4a12226ca15bb3, type: 3}
   durability: 0
   stackable: 1
   image: {fileID: -5034061168752090764, guid: 2c724024d13622b4bb811eb4e052c946, type: 3}

@@ -11,6 +11,9 @@ public class InvManager : MonoBehaviour
     public GameObject invItemPrefab;
     public Transform dropPoint;
 
+    public Transform handPoint;
+    private GameObject currentHandItem;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -89,6 +92,8 @@ public class InvManager : MonoBehaviour
 
         slots[newValue].Select();
         selectedSlot = newValue;
+        
+        UpdateHand();
     }
 
     private void DropSelectedItem()
@@ -122,6 +127,8 @@ public class InvManager : MonoBehaviour
         {
             invItem.RefreshCount();
         }
+        
+        UpdateHand();
     }
 
     private void SpawnNewItem(Item item, InvSlot slot, int amount)
@@ -131,10 +138,13 @@ public class InvManager : MonoBehaviour
         InvItem invItem = newItem.GetComponent<InvItem>();
         
         invItem.initaliseItem(item);
-        
         invItem.count = amount;
-        
         invItem.RefreshCount();
+
+        if (slot == slots[selectedSlot])
+        {
+            UpdateHand();
+        }
     }
 
     public Item GetSelectedItem(bool use)
@@ -168,6 +178,7 @@ public class InvManager : MonoBehaviour
                 itemInSlot.RefreshCount();
             }
         }
+        UpdateHand();
         return item;
     }
 
@@ -183,6 +194,11 @@ public class InvManager : MonoBehaviour
                 {
                     existing.count += amount;
                     existing.RefreshCount();
+
+                    if (i == selectedSlot)
+                    {
+                        UpdateHand();
+                    }
                     
                     return true;
                 }
@@ -221,6 +237,33 @@ public class InvManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private void UpdateHand()
+    {
+        if (currentHandItem != null)
+        {
+            Destroy(currentHandItem);
+        }
+
+        if (selectedSlot < 0 || selectedSlot >= slots.Length)
+        {
+            return;
+        }
+        
+        InvSlot invSlot = slots[selectedSlot];
+        InvItem invItem = invSlot.GetComponentInChildren<InvItem>();
+
+        if (invItem != null && invItem.item != null && invItem.item.handPrefab != null)
+        {
+            if (handPoint != null)
+            {
+                currentHandItem = Instantiate(invItem.item.handPrefab, handPoint);
+                currentHandItem.transform.localPosition = Vector3.zero;
+                currentHandItem.transform.localRotation = Quaternion.identity;
+            }
+        }
+
     }
 
 }

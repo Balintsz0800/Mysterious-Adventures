@@ -250,6 +250,11 @@ public class InvManager : MonoBehaviour
             Destroy(currentHandItem);
         }
 
+        if (anim != null)
+        {
+            anim.carrying = false;
+        }
+
         if (selectedSlot < 0 || selectedSlot >= slots.Length)
         {
             return;
@@ -266,10 +271,6 @@ public class InvManager : MonoBehaviour
                 currentHandItem = Instantiate(invItem.item.handPrefab, handPoint);
                 currentHandItem.transform.localPosition = Vector3.zero;
                 currentHandItem.transform.localRotation = Quaternion.identity;
-            }
-            else
-            {
-                anim.carrying = false;
             }
         }
 

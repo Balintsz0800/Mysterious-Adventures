@@ -471,6 +471,8 @@ MonoBehaviour:
   vertical: 0
   isMoving: 0
   carrying: 0
+  run: {fileID: 9100000, guid: b04ee70b652a9304e9dafb0429f4be01, type: 2}
+  carry: {fileID: 9100000, guid: 73e2ebe46f6a1ee4f8687e45a0373e8a, type: 2}
 --- !u!95 &21980756
 Animator:
   serializedVersion: 7
@@ -197578,6 +197580,8 @@ MonoBehaviour:
   vertical: 0
   isMoving: 0
   carrying: 0
+  run: {fileID: 0}
+  carry: {fileID: 0}
 --- !u!224 &1087019074 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 98688250719779660, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}

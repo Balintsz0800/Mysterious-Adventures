@@ -1,5 +1,6 @@
 using System;
 using JetBrains.Annotations;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -38,6 +39,7 @@ public class FootSpeps : MonoBehaviour
             stepCounter = stepInterval;
         }
     }
+    
 
     private void PlayStep()
     {
@@ -47,30 +49,33 @@ public class FootSpeps : MonoBehaviour
 
         if (tile == null)
         {
-            return; 
-        }
-        
-        string tileName = tile.name.ToLower();
-
-        if (tileName.Contains("grass"))
-        {
-            stepInterval = 0.45f;
-            audioSource.clip = GrassStep;
-        }
-        else if (tileName.Contains("dirt"))
-        {
-            stepInterval = 0.6f;
-            audioSource.clip = DirtStep;
-        }
-        else if (tileName.Contains("stone"))
-        {
-            audioSource.clip = StoneStep;
-        }
-        else
-        {
             return;
         }
         
+        CustomTile customTile = tile as CustomTile;
+
+        if (customTile == null)
+        {
+            return;
+        }
+
+        switch (customTile.groundType)
+        {
+            case GeoundType.groundType.Grass:
+                stepInterval = 0.45f;
+                audioSource.clip = GrassStep;
+                break;
+            case GeoundType.groundType.Dirt:
+                stepInterval = 0.6f;
+                audioSource.clip = DirtStep;
+                break;
+            case GeoundType.groundType.Stone:
+                stepInterval = 0.5f;
+                audioSource.clip = StoneStep;
+                break;
+            default:
+                break;
+        }
         audioSource.Play();
     }
 }

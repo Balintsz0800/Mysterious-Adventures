@@ -25,13 +25,24 @@ public class NPC : MonoBehaviour
 
     public void Talk()
     {
-        if (dialogue != null &&  dialogue.inInteractionRange)
+        if (dialogue != null && !dialogue.inInteractionRange)
         {
-            if (movement.isWandering)
-            {
-                movement.StopMovement();
-                movement.isWandering = false;
-            }
+            return;
+        }
+
+        if (movement != null && movement.isWandering)
+        {
+            movement.StopMovement();
+            movement.isWandering = false;
+        }
+
+        if (QuestManager.Instance != null)
+        {
+            QuestManager.Instance.TryDeliverItemsToNPC(this);
+        }
+
+        if (dialogue != null)
+        {
             dialogue.StartDialogue();
         }
 

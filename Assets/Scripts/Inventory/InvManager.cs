@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class InvManager : MonoBehaviour
 {
+    public static InvManager instance;
+    
     public InvSlot[] slots;
     private int selectedSlot = -1;
     public GameObject inventory;
@@ -17,6 +20,10 @@ public class InvManager : MonoBehaviour
 
     public Animation anim;
 
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -124,8 +131,9 @@ public class InvManager : MonoBehaviour
 
         if (invItem.count <= 0)
         {
+            invItem.item = null;
+            invItem.transform.SetParent(null);
             Destroy(invItem.gameObject);
-            UpdateHand();
         }
         else
         {
@@ -175,6 +183,8 @@ public class InvManager : MonoBehaviour
 
             if (itemInSlot.count <= 0)
             {
+                itemInSlot.item = null;
+                itemInSlot.transform.SetParent(null);
                 Destroy(itemInSlot.gameObject);
             }
             else

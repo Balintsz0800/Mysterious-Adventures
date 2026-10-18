@@ -32,20 +32,24 @@ public class QuestManager : MonoBehaviour
 
     public void StartQuest(QuestData quest)
     {
-        if (quest == null)
+        if (quest == null || GetQuestState(quest) != QuestState.NotStarted)
         {
             return;
         }
 
-        if (GetQuestState(quest) != QuestState.NotStarted)
-        {
-            return;
-        }
+        QuestRuntime runtime = new  QuestRuntime(quest);
+        activeQuests.Add(runtime);
+        CheckHaveItemObjectives();
 
-        activeQuests.Add(new QuestRuntime(quest));
-        
-        questTextBox.SetActive(true);
-        questTitle.text = "Quest started: " + quest.questName;
+        if (activeQuests.Contains(runtime) && questTextBox != null)
+        {
+            questTextBox.SetActive(true);
+
+            if (questTitle != null)
+            {
+                questTitle.text = "Quest started: " + quest.questName;
+            }
+        }
     }
 
     public QuestState GetQuestState(QuestData quest)
@@ -71,55 +75,224 @@ public class QuestManager : MonoBehaviour
 
     public void OnTalk(NPC npc)
     {
-        foreach (QuestRuntime q in activeQuests)
+        if (npc == null)
         {
-            for (int i = 0; i < q.quest.objectives.Count; i++)
+            return;
+        }
+        
+        for (int q = activeQuests.Count - 1; q >= 0; q--)
+        {
+            QuestRuntime runtime = activeQuests[q];
+            
+            for (int i = 0; i < runtime.quest.objectives.Count; i++)
             {
-                QuestObjective objective = q.quest.objectives[i];
-
-                if (objective.objectiveType != QuestObjectiveType.Talk)
+                QuestObjective objective = runtime.quest.objectives[i];
+            
+                if (objective.objectiveType == QuestObjectiveType.Talk && objective.targetID == npc.npcID)
                 {
-                    continue;
-                }
-
-                if (objective.targetID == npc.npcID)
-                {
-                    q.AddProgress(i, 1);
-                    CheckQuest(q);
+                    runtime.AddProgress(i, 1);
                 }
             }
+            CheckQuest(runtime);
         }
+        CheckHaveItemObjectives();
     }
 
     public void OnItemCollected(Item item, int amount)
     {
-        foreach (QuestRuntime q in activeQuests)
+        if (item == null || amount <= 0)
         {
-            for (int i = 0; i < q.quest.objectives.Count; i++)
-            {
-                QuestObjective objective = q.quest.objectives[i];
+            return;
+        }
 
-                if (objective.objectiveType != QuestObjectiveType.CollectItem)
+        for (int q = activeQuests.Count - 1; q >= 0; q--)
+        {
+            QuestRuntime runtime = activeQuests[q];
+            
+            for (int i = 0; i < runtime.quest.objectives.Count; i++)
+            {
+                QuestObjective objective = runtime.quest.objectives[i];
+            
+                if (objective.objectiveType == QuestObjectiveType.CollectItem && objective.item == item)
+                {
+                    runtime.AddProgress(i, amount);
+                }
+            }
+            CheckQuest(runtime);
+        }
+
+        CheckHaveItemObjectives();
+    }
+
+    private void CheckHaveItemObjectives()
+    {
+        if (InvManager.instance == null)
+        {
+            return;
+        }
+        
+        for (int q = activeQuests.Count - 1; q >= 0; q--)
+        {
+            QuestRuntime runtime = activeQuests[q];
+            
+            for (int i = 0; i < runtime.quest.objectives.Count; i++)
+            {
+                QuestObjective objective = runtime.quest.objectives[i];
+            
+                if (objective.objectiveType != QuestObjectiveType.HaveItem || objective.item == null)
                 {
                     continue;
                 }
 
-                if (objective.item == item)
+                int inventoryAmount = CountItemInInventory(objective.item);
+
+                if (inventoryAmount >= objective.requiredAmount)
                 {
-                    q.AddProgress(i, amount);
-                    CheckQuest(q);
+                    runtime.AddProgress(i, objective.requiredAmount);
                 }
             }
+            CheckQuest(runtime);
         }
+    }
+
+    public int CountItemInInventory(Item item)
+    {
+        if (InvManager.instance == null || item == null)
+        {
+            return 0;
+        }
+
+        int total = 0;
+
+        foreach (InvSlot slot in InvManager.instance.slots)
+        {
+            if (slot == null)
+            {
+                continue;
+            }
+
+            InvItem invItem = slot.GetComponentInChildren<InvItem>();
+
+            if (invItem != null && invItem.item == item)
+            {
+                total += invItem.count;
+            }
+        }
+        return total;
+    }
+
+    public bool TryDeliverItemsToNPC(NPC npc)
+    {
+        if (npc == null || InvManager.instance == null)
+        {
+            return false;
+        }
+
+        bool deliveredAny = false;
+        
+        for (int q = activeQuests.Count - 1; q >= 0; q--)
+        {
+            QuestRuntime runtime = activeQuests[q];
+            
+            for (int i = 0; i < runtime.quest.objectives.Count; i++)
+            {
+                QuestObjective objective = runtime.quest.objectives[i];
+            
+                if (objective.objectiveType != QuestObjectiveType.DeliverItem || objective.targetID != npc.npcID || objective.item == null)
+                {
+                    continue;
+                }
+
+                int needed = objective.requiredAmount - runtime.progress[i];
+
+                if (needed <= 0)
+                {
+                    continue;
+                }
+
+                int available = CountItemInInventory(objective.item);
+                int amountToRemove = Mathf.Min(needed, available);
+
+                if (amountToRemove <= 0)
+                {
+                    continue;
+                }
+                
+                int removed = RemoveItemFromInventory(objective.item, amountToRemove);
+
+                if (removed > 0)
+                {
+                    runtime.AddProgress(i, removed);
+                    deliveredAny = true;
+                }
+            }
+            CheckQuest(runtime);
+        }
+
+        if (deliveredAny)
+        {
+            CheckHaveItemObjectives();
+        }
+        
+        return deliveredAny;
+    }
+
+    private int RemoveItemFromInventory(Item item, int amount)
+    {
+        if (InvManager.instance == null || item == null || amount <= 0)
+        {
+            return 0;
+        }
+        
+        int remaining = amount;
+        InvManager inv = InvManager.instance;
+
+        foreach (InvSlot slot in inv.slots)
+        {
+            if (slot == null || remaining <= 0)
+            {
+                continue;
+            }
+
+            InvItem invItem = slot.GetComponentInChildren<InvItem>();
+
+            if (invItem == null || invItem.item != item)
+            {
+                continue;
+            }
+            
+            int removed = Mathf.Min(invItem.count, remaining);
+
+            invItem.count -= removed;
+            remaining -= removed;
+
+            if (invItem.count <= 0)
+            {
+                Destroy(invItem.gameObject);
+            }
+            else
+            {
+                invItem.RefreshCount();
+            }
+        }
+
+        return amount - remaining;
     }
 
     public void OnLocationReached(string location)
     {
-        foreach (QuestRuntime q in activeQuests)
+        if (string.IsNullOrEmpty(location))
         {
-            for (int i = 0; i < q.quest.objectives.Count; i++)
+            return;
+        }
+
+        for (int q = activeQuests.Count - 1; q >= 0; q--)
+        {
+            QuestRuntime runtime = activeQuests[q];
+
+            for (int i = 0; i < runtime.quest.objectives.Count; i++)
             {
-                QuestObjective objective = q.quest.objectives[i];
+                QuestObjective objective = runtime.quest.objectives[i];
 
                 if (objective.objectiveType != QuestObjectiveType.Location)
                 {
@@ -128,20 +301,52 @@ public class QuestManager : MonoBehaviour
 
                 if (objective.targetID == location)
                 {
-                    q.AddProgress(i, 1);
-                    CheckQuest(q);
+                    runtime.AddProgress(i, 1);
                 }
             }
+
+            CheckQuest(runtime);
+        }
+    }
+
+    private void UpdateTargetObjective(QuestObjectiveType type, string targetID)
+    {
+        if (string.IsNullOrEmpty(targetID))
+        {
+            return;
+        }
+
+        for (int q = activeQuests.Count - 1; q >= 0; q--)
+        {
+            QuestRuntime runtime = activeQuests[q];
+            
+            for (int i = 0; i < runtime.quest.objectives.Count; i++)
+            {
+                QuestObjective objective = runtime.quest.objectives[i];
+            
+                if (objective.objectiveType == type && objective.targetID == targetID)
+                {
+                    runtime.AddProgress(i, 1);
+                }
+            }
+            CheckQuest(runtime);
         }
     }
 
     public void OnInteract(string target)
     {
-        foreach (QuestRuntime q in activeQuests)
+        if (string.IsNullOrEmpty(target))
         {
-            for (int i = 0; i < q.quest.objectives.Count; i++)
+            return;
+        }
+
+        for (int q = activeQuests.Count - 1; q >= 0; q--)
+        {
+            QuestRuntime runtime = activeQuests[q];
+
+            for (int i = 0; i < runtime.quest.objectives.Count; i++)
             {
-                QuestObjective objective = q.quest.objectives[i];
+                QuestObjective objective = runtime.quest.objectives[i];
 
                 if (objective.objectiveType != QuestObjectiveType.Interact)
                 {
@@ -150,42 +355,53 @@ public class QuestManager : MonoBehaviour
 
                 if (objective.targetID == target)
                 {
-                    q.AddProgress(i, 1);
-                    CheckQuest(q);
+                    runtime.AddProgress(i, 1);
                 }
             }
+
+            CheckQuest(runtime);
         }
     }
 
     public void OnCraft(Item item)
     {
-        foreach (QuestRuntime q in activeQuests)
+        if (item == null)
         {
-            for (int i = 0; i < q.quest.objectives.Count; i++)
+            return;
+        }
+        
+        for (int q = activeQuests.Count - 1; q >= 0; q--)
+        {
+            QuestRuntime runtime = activeQuests[q];
+            
+            for (int i = 0; i < runtime.quest.objectives.Count; i++)
             {
-                QuestObjective objective = q.quest.objectives[i];
-
-                if (objective.objectiveType != QuestObjectiveType.Craft)
+                QuestObjective objective = runtime.quest.objectives[i];
+            
+                if (objective.objectiveType == QuestObjectiveType.Craft && objective.item == item)
                 {
-                    continue;
-                }
-
-                if (objective.item == item)
-                {
-                    q.AddProgress(i, 1);
-                    CheckQuest(q);
+                    runtime.AddProgress(i, 1);
                 }
             }
+            CheckQuest(runtime);
         }
+        CheckHaveItemObjectives();
     }
 
     public void OnKill(string enemy)
     {
-        foreach (QuestRuntime q in activeQuests)
+        if (string.IsNullOrEmpty(enemy))
         {
-            for (int i = 0; i < q.quest.objectives.Count; i++)
+            return;
+        }
+
+        for (int q = activeQuests.Count - 1; q >= 0; q--)
+        {
+            QuestRuntime runtime = activeQuests[q];
+
+            for (int i = 0; i < runtime.quest.objectives.Count; i++)
             {
-                QuestObjective objective = q.quest.objectives[i];
+                QuestObjective objective = runtime.quest.objectives[i];
 
                 if (objective.objectiveType != QuestObjectiveType.Kill)
                 {
@@ -194,49 +410,41 @@ public class QuestManager : MonoBehaviour
 
                 if (objective.targetID == enemy)
                 {
-                    q.AddProgress(i, 1);
-                    CheckQuest(q);
+                    runtime.AddProgress(i, 1);
                 }
             }
+
+            CheckQuest(runtime);
         }
     }
 
-    public void OnDeliverItem(NPC npc, Item item, int amount)
+    private void CheckQuest(QuestRuntime runtime)
     {
-        for (int quest = activeQuests.Count - 1; quest >= 0; quest--)
-        {
-            QuestRuntime q = activeQuests[quest];
-
-            for (int i = 0; i < q.quest.objectives.Count; i++)
-            {
-                QuestObjective objective = q.quest.objectives[i];
-
-                if (objective.objectiveType != QuestObjectiveType.DeliverItem)
-                {
-                    continue;
-                }
-
-                if (objective.targetID == npc.npcID && objective.item == item)
-                {
-                    q.AddProgress(i, 1);
-                    CheckQuest(q);
-                }
-            }
-        }
-    }
-
-    private void CheckQuest(QuestRuntime q)
-    {
-        if (!q.IsComplete())
+        if (runtime == null || !runtime.IsComplete())
         {
             return;
         }
 
-        q.state = QuestState.Completed;
-        activeQuests.Remove(q);
-        completedQuests.Add(q);
+        runtime.state = QuestState.Completed;
 
-        questTextBox.SetActive(true);
-        questTitle.text = "Quest completed: " +  q.quest.name;
+        if (!activeQuests.Remove(runtime))
+        {
+           return;
+        }
+
+        if (!completedQuests.Contains(runtime))
+        {
+            completedQuests.Add(runtime);
+        }
+
+        if (questTextBox != null)
+        {
+            questTextBox.SetActive(true);
+        }
+
+        if (questTitle != null)
+        {
+            questTitle.text = "Quest completed: " +  runtime.quest.name;
+        }
     }
 }

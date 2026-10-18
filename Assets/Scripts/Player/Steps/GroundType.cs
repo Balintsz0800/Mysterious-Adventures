@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GroundType : MonoBehaviour
+public class GeoundType : MonoBehaviour
 {
     public enum groundType
     {

@@ -16,10 +16,11 @@ MonoBehaviour:
   questName: The missing bag
   description: Find and give back the bag
   objectives:
-  - objectiveType: 1
+  - objectiveType: 7
     description: Find the man's bag in the forest
-    targetID: bag
+    targetID: Forest guy
     item: {fileID: 11400000, guid: 4ab3cd5bd1c5c8440814b07f9afd28b2, type: 2}
     requiredAmount: 1
   rewardMoney: 0
-  rewardItems: []
+  rewardItems:
+  - {fileID: 11400000, guid: f33968a7835a5ed4aa9275a24b6e6294, type: 2}

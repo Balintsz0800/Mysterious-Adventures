@@ -16,7 +16,6 @@ public class InvManager : MonoBehaviour
 
     public Transform handPoint;
     private GameObject currentHandItem;
-    public bool carrying;
 
     public Animation anim;
 

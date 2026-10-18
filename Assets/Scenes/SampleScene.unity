@@ -518,17 +518,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21980747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af6904898ccadf94d832a813b5138ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FootSpeps
-  tilemap: {fileID: 0}
+  tilemap: {fileID: 419672190}
   audioSource: {fileID: 768033570}
   GrassStep: {fileID: 8300000, guid: 308f52a37755f034a810a21aff865bf0, type: 3}
   DirtStep: {fileID: 8300000, guid: 7aa5bdf838ef5b745a4e73ed9f3957b4, type: 3}
   StoneStep: {fileID: 8300000, guid: f2cb2f3f3f7d9134d88a30d8916b3887, type: 3}
-  stepInterval: 0.3
+  stepInterval: 1
   player: {fileID: 21980753}
 --- !u!114 &21980759
 MonoBehaviour:
@@ -581,7 +581,6 @@ MonoBehaviour:
   invItemPrefab: {fileID: 7441509803115286558, guid: 177b27834f4f80c42834318bdc179043, type: 3}
   dropPoint: {fileID: 779606136}
   handPoint: {fileID: 1109619904}
-  carrying: 0
   anim: {fileID: 21980754}
 --- !u!224 &28212193 stripped
 RectTransform:
@@ -234660,7 +234659,9 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
     m_Data: {r: -5.4077745e+28, g: -5.4077745e+28, b: -5.4077745e+28, a: -5.4077745e+28}
-  m_TileObjectToInstantiateArray: []
+  m_TileObjectToInstantiateArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -102, y: -58, z: 0}

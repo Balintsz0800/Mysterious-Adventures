@@ -18,12 +18,20 @@ public class FootSpeps : MonoBehaviour
     private float stepCounter;
     
     bool isMoving;
-    [CanBeNull] public PlayerMovement player;
+    private Vector2 lastPos;
+    public PlayerMovement player;
 
     private void Update()
     {
-        isMoving = player.movementVector.x != 0 || player.movementVector.y != 0;
-
+        if (player == null)
+        {
+            return;
+        }
+        
+        Vector2 currentPos = new Vector2(transform.position.x, transform.position.y);
+        isMoving = currentPos != lastPos;
+        lastPos = currentPos;
+        
         if (!isMoving)
         {
             stepCounter = 0f;
@@ -43,39 +51,42 @@ public class FootSpeps : MonoBehaviour
 
     private void PlayStep()
     {
-        Vector3Int tilePos =  tilemap.WorldToCell(transform.position);
-        
+        Vector3Int tilePos = tilemap.WorldToCell(transform.position);
         TileBase tile = tilemap.GetTile(tilePos);
 
+        if (tilemap == null)
+        {
+            return;
+        }
         if (tile == null)
         {
             return;
         }
         
         CustomTile customTile = tile as CustomTile;
-
         if (customTile == null)
         {
             return;
         }
-
+        
         switch (customTile.groundType)
         {
-            case GeoundType.groundType.Grass:
+            case GroundType.groundType.Grass:
                 stepInterval = 0.45f;
                 audioSource.clip = GrassStep;
                 break;
-            case GeoundType.groundType.Dirt:
+            case GroundType.groundType.Dirt:
                 stepInterval = 0.6f;
                 audioSource.clip = DirtStep;
                 break;
-            case GeoundType.groundType.Stone:
+            case GroundType.groundType.Stone:
                 stepInterval = 0.5f;
                 audioSource.clip = StoneStep;
                 break;
             default:
-                break;
+                return;
         }
+        
         audioSource.Play();
     }
 }

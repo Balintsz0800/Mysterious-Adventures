@@ -519,7 +519,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21980747}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af6904898ccadf94d832a813b5138ad0, type: 3}
   m_Name: 
@@ -530,7 +530,11 @@ MonoBehaviour:
   DirtStep: {fileID: 8300000, guid: 7aa5bdf838ef5b745a4e73ed9f3957b4, type: 3}
   StoneStep: {fileID: 8300000, guid: f2cb2f3f3f7d9134d88a30d8916b3887, type: 3}
   stepInterval: 1
-  player: {fileID: 21980753}
+  TileGroundDatas:
+  - {fileID: 11400000, guid: ffad24c5f688c8840b42a2e11437e635, type: 2}
+  - {fileID: 11400000, guid: f5e1aeffb66da394b9a165ba7cdf3281, type: 2}
+  anim: {fileID: 21980754}
+  moving: 0
 --- !u!114 &21980759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26248,7 +26252,7 @@ Transform:
   m_GameObject: {fileID: 768033568}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1813.71, y: -988.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34819,7 +34823,7 @@ Transform:
   m_GameObject: {fileID: 1651034785}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1839.8112, y: -971.33136, z: 0}
+  m_LocalPosition: {x: -1813.7, y: -988.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

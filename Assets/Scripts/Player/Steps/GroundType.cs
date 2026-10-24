@@ -1,11 +1,9 @@
 using UnityEngine;
 
-public class GroundType : MonoBehaviour
-{
-    public enum groundType
-    {
-        Grass,
-        Dirt,
-        Stone
-    }
+public enum GroundType
+{ 
+    Grass,
+    Dirt,
+    Stone
 }
+

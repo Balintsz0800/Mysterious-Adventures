@@ -1,6 +1,4 @@
-using System;
-using JetBrains.Annotations;
-using Unity.VisualScripting.Dependencies.NCalc;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -13,26 +11,47 @@ public class FootSpeps : MonoBehaviour
     [SerializeField] private AudioClip DirtStep;
     [SerializeField] private AudioClip StoneStep;
     
-    [SerializeField] private float stepInterval;
+    [SerializeField] private float stepInterval = 0.45f;
+    
+    [SerializeField] private List<TileGroundData> TileGroundDatas;
+    
+    private Dictionary<TileBase, GroundType> tileGroundType;
     
     private float stepCounter;
-    
-    bool isMoving;
     private Vector2 lastPos;
-    public PlayerMovement player;
+    public Animation anim;
+    public bool moving;
+
+    private void Awake()
+    {
+        tileGroundType = new Dictionary<TileBase, GroundType>();
+
+        foreach (var ground in TileGroundDatas)
+        {
+            if (ground == null || ground.tiles == null)
+            {
+                continue;
+            }
+
+            foreach (var tile in ground.tiles)
+            {
+                if (tile != null && !tileGroundType.ContainsKey(tile))
+                {
+                    tileGroundType.Add(tile, ground.groundType);
+                }
+            }
+            
+        }
+    }
 
     private void Update()
     {
-        if (player == null)
-        {
-            return;
-        }
+
+        moving = anim.isMoving;
         
-        Vector2 currentPos = new Vector2(transform.position.x, transform.position.y);
-        isMoving = currentPos != lastPos;
-        lastPos = currentPos;
+        Debug.Log("player is moving: " + moving);
         
-        if (!isMoving)
+        if (!moving)
         {
             stepCounter = 0f;
             audioSource.Stop();
@@ -51,35 +70,37 @@ public class FootSpeps : MonoBehaviour
 
     private void PlayStep()
     {
-        Vector3Int tilePos = tilemap.WorldToCell(transform.position);
-        TileBase tile = tilemap.GetTile(tilePos);
-
+        
         if (tilemap == null)
         {
             return;
         }
+        
+        Vector3 worldPos = transform.position;
+        Vector3Int  tilePos = tilemap.WorldToCell(worldPos);
+        TileBase tile = tilemap.GetTile<TileBase>(tilePos);
+
         if (tile == null)
         {
             return;
         }
-        
-        CustomTile customTile = tile as CustomTile;
-        if (customTile == null)
+
+        if (!tileGroundType.TryGetValue(tile, out GroundType groundType))
         {
             return;
         }
-        
-        switch (customTile.groundType)
+
+        switch (groundType)
         {
-            case GroundType.groundType.Grass:
+            case  GroundType.Grass:
                 stepInterval = 0.45f;
                 audioSource.clip = GrassStep;
                 break;
-            case GroundType.groundType.Dirt:
+            case  GroundType.Dirt:
                 stepInterval = 0.6f;
                 audioSource.clip = DirtStep;
                 break;
-            case GroundType.groundType.Stone:
+            case  GroundType.Stone:
                 stepInterval = 0.5f;
                 audioSource.clip = StoneStep;
                 break;

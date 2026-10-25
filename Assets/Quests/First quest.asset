@@ -20,6 +20,6 @@ MonoBehaviour:
     description: Talk with an NPC
     targetID: Forest guy
     item: {fileID: 0}
-    requiredAmount: 0
+    requiredAmount: 1
   rewardMoney: 0
   rewardItems: []

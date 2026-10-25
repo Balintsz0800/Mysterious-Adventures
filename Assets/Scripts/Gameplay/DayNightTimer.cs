@@ -13,6 +13,7 @@ public class DayNightTimer : MonoBehaviour
     [SerializeField] private float currentTime = 10f;
     public TMP_Text timeText;
     private bool isNight;
+    private string lastPeriod = "";
 
     public ClockUI clockui;
     
@@ -57,6 +58,7 @@ public class DayNightTimer : MonoBehaviour
     {
         audioSource.clip = day;
         audioSource.Play();
+        UpdateDayTime();
     }
 
     void Update()
@@ -80,47 +82,73 @@ public class DayNightTimer : MonoBehaviour
 
     void UpdateDayTime()
     {
+        string period;
+        
         if (currentTime >= 6f && currentTime < 8f)
         {
-            Morning();
+            period = "Morning";
         }
         else if (currentTime >= 8f && currentTime < 18f)
         {
-            Day();
+            period = "MidDay";
         }
         else if (currentTime >= 18f && currentTime < 21f)
         {
+            period = "Evening";
+        }
+        else
+        {
+            period = "Night";
+        }
+
+        if (period == lastPeriod)
+        {
+            return;
+        }
+        
+        lastPeriod = period;
+
+        if (period == "Morning")
+        {
+            Morning();
+            clockui.Sunrise();
+        }
+        else if (period == "MidDay")
+        {
+            Day();
+            clockui.MidDay();
+        }
+        else if (period == "Evening")
+        {
             Evening();
+            clockui.Sunset();
         }
         else
         {
             Night();
+            clockui.Night();
         }
     }
 
     void Morning()
     {
-        clockui.Sunrise();
         targetIntensity = 0.6f;
         SetDayMusic();
     }
 
     void Day()
     {
-        clockui.MidDay();
         targetIntensity = 1f;
     }
 
     void Evening()
     {
-        clockui.Sunset();
         targetIntensity = 0.4f;
         SetNightMusic();
     }
 
     void Night()
     {
-        clockui.Night();
         targetIntensity = 0.13f;
     }
 

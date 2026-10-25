@@ -49,8 +49,6 @@ public class FootSpeps : MonoBehaviour
 
         moving = anim.isMoving;
         
-        Debug.Log("player is moving: " + moving);
-        
         if (!moving)
         {
             stepCounter = 0f;

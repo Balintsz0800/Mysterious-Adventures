@@ -14,27 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileGroundData
   groundType: 1
   tiles:
-  - {fileID: 11400000, guid: f2f9b2cfff72e1a419069fa8654897c7, type: 2}
-  - {fileID: 11400000, guid: 0469abb5c2653754bbc3926b60190603, type: 2}
-  - {fileID: 11400000, guid: 7e12718a157884140930ead9d7900d42, type: 2}
-  - {fileID: 11400000, guid: c66c97539554c4847a31a0500bb2bf99, type: 2}
-  - {fileID: 11400000, guid: 309bcd404f7a98148a4b2dc43e26f7ab, type: 2}
-  - {fileID: 11400000, guid: 1cbc4b83948595549991b081c08e26a5, type: 2}
-  - {fileID: 11400000, guid: cbd8ee0facda12746901099d456b5a9e, type: 2}
-  - {fileID: 11400000, guid: e28c54374d9214847b9a6eb029de4e9e, type: 2}
-  - {fileID: 11400000, guid: 5c6ee9eb99a424344826ba0e143eed8d, type: 2}
-  - {fileID: 11400000, guid: 7e5db6d3d69b2e04bb4ab0b3bce4d7ea, type: 2}
-  - {fileID: 11400000, guid: fd25790e9c791934e84f521091f2c5b5, type: 2}
-  - {fileID: 11400000, guid: bf8b4bc46a3a5aa4dbc02bbb12f8dd0c, type: 2}
-  - {fileID: 11400000, guid: c9e751d4858537640b72b0822a124b55, type: 2}
-  - {fileID: 11400000, guid: b8fe86957a62c0240a148ef81f463fda, type: 2}
-  - {fileID: 11400000, guid: d84034844a7284f4c909fa2809382a0b, type: 2}
-  - {fileID: 11400000, guid: 78b136c73961ffc4b89b0a99a33dde58, type: 2}
-  - {fileID: 11400000, guid: 5fc263cacf51a4d4a94618bae6e06ccd, type: 2}
-  - {fileID: 11400000, guid: 6d0d41e624aea5141a4ba9c56beb7387, type: 2}
-  - {fileID: 11400000, guid: f77e3490e930ef34a9bb8effca87208c, type: 2}
-  - {fileID: 11400000, guid: 00fab21112fae7d419563fbec00fc320, type: 2}
-  - {fileID: 11400000, guid: a7997280f064bf84e9feb47115a3b71a, type: 2}
-  - {fileID: 11400000, guid: a48776b253fee654193e08cc96b12cac, type: 2}
-  - {fileID: 11400000, guid: 0858e556f1f3eb044b6c1e328fb31947, type: 2}
   - {fileID: 11400000, guid: f763f80ef7053c045b511b4ff500b3f5, type: 2}

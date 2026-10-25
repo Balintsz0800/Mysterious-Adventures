@@ -13,6 +13,8 @@ public class DayNightTimer : MonoBehaviour
     [SerializeField] private float currentTime = 10f;
     public TMP_Text timeText;
     private bool isNight;
+
+    public ClockUI clockui;
     
     [Header("Light")]
     public Light2D light;
@@ -98,23 +100,27 @@ public class DayNightTimer : MonoBehaviour
 
     void Morning()
     {
+        clockui.Sunrise();
         targetIntensity = 0.6f;
         SetDayMusic();
     }
 
     void Day()
     {
+        clockui.MidDay();
         targetIntensity = 1f;
     }
 
     void Evening()
     {
+        clockui.Sunset();
         targetIntensity = 0.4f;
         SetNightMusic();
     }
 
     void Night()
     {
+        clockui.Night();
         targetIntensity = 0.13f;
     }
 

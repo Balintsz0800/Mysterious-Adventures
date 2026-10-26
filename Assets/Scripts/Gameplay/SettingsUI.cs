@@ -107,7 +107,7 @@ public class SettingsUI : MonoBehaviour
         }
         
         fpsLimitDropdown.ClearOptions();
-        fpsLimitDropdown.AddOptions(new List<string> {"30 FPS", "60 FPS", "120 FPS", "240 FPS", "Unlimited"});
+        fpsLimitDropdown.AddOptions(new List<string> {"30 FPS", "60 FPS", "120 FPS", "144 FPS", "240 FPS", "Unlimited"});
         
         fpsLimitDropdown.SetValueWithoutNotify(settingsManager.GetSavedFPSLimitIndex());
         fpsLimitDropdown.RefreshShownValue();

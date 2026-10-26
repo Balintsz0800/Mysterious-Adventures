@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartCeneAnims : MonoBehaviour
 {
@@ -7,17 +10,30 @@ public class StartCeneAnims : MonoBehaviour
     [SerializeField] private Animator mainButtonsAnim;
     [SerializeField] private Animator textAnim;
     
-    void Start()
+    [SerializeField] private Button playButton;
+    [SerializeField] private Button settingsButton;
+    [SerializeField] private Button exitButton;
+
+    private IEnumerator Start()
     {
+        SetButtonValue(false);
+        
         backgroundAnim.SetTrigger("Play");
+        yield return new WaitForSeconds(1.5f);
+        
+        textAnim.SetTrigger("Play");
+        yield return new WaitForSeconds(1.5f);
+        
+        mainButtonsAnim.SetTrigger("Play");
+        yield return new WaitForSeconds(1.5f);
+        
+        SetButtonValue(true);
     }
 
-    public void BackgroundAnimEnd()
+    private void SetButtonValue(bool value)
     {
-        textAnim.SetTrigger("Play");
-    }
-    public void TextAnimEnd()
-    {
-        mainButtonsAnim.SetTrigger("Play");
+        playButton.interactable = value;
+        settingsButton.interactable = value;
+        exitButton.interactable = value;
     }
 }

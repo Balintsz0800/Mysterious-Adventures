@@ -49,8 +49,8 @@ public class SettingsManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         BuildResolutionList();
-        FindSelectedResolution();
         LoadSettings();
+        FindSelectedResolution();
         ApplyAudioSettings();
         ApplyGraphicsSettings();
     }
@@ -237,6 +237,7 @@ public class SettingsManager : MonoBehaviour
         savedResolutionHeight = Screen.currentResolution.height;
         
         FindSelectedResolution();
+        ApplyAudioSettings();
         SaveAudioSettings();
         SaveGraphicsSettings(selectedResolution, selectedDisplayMode, vSyncEnabled, selectedFPSLimit);
     }

@@ -27,5 +27,10 @@ public class Loading : MonoBehaviour
             timer = 0f;
             UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene");
         }
+
+        if (Input.anyKey)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene");
+        }
     }
 }

@@ -1,24 +1,24 @@
 using System;
 using System.Collections;
- using System.Collections.Generic;
- using UnityEngine;
- using UnityEngine.Tilemaps;
- using Random = UnityEngine.Random;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
- public class NPCMovement : MonoBehaviour
- {
-     public static NPCMovement instance;
-    
+public class NPCMovement : MonoBehaviour
+{
+    public static NPCMovement instance;
+
     [Header("Movement")]
     [SerializeField] private float speed = 2f;
     [SerializeField] private float stoppingDistance = 0.05f;
 
-    [Header("PathFinding")] 
+    [Header("PathFinding")]
     [SerializeField] private Tilemap walkableTile;
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private float oblstacCheckRadius = 0.5f;
     [SerializeField] private int maxPathInterations = 600;
-    
+
     [Header("Wandering")]
     [SerializeField] private bool wanderOnStart = true;
     [SerializeField] private float wanderRadius = 5f;
@@ -27,25 +27,25 @@ using System.Collections;
     [SerializeField] private float minIdle = 1f;
     [SerializeField] private float maxIdle = 4f;
     [SerializeField] private int wanderAttempts = 10;
-    
+
     private Rigidbody2D rb;
     private Animation NPCanim;
-    
+
     private Transform target;
     private Vector2 targetPos;
 
     private bool hasTarget;
     public bool isWandering;
-    
+
     private List<Vector2> path = new List<Vector2>();
     private int pathIndex;
-    
+
     private Coroutine idleCoroutine;
 
     private void Awake()
     {
         instance = this;
-        
+
         rb = GetComponent<Rigidbody2D>();
         NPCanim = GetComponent<Animation>();
     }
@@ -90,7 +90,7 @@ using System.Collections;
         if (path.Count == 0)
         {
             CreatePath();
-            
+
             if (path.Count == 0)
             {
                 StopMovement();
@@ -100,7 +100,7 @@ using System.Collections;
                     hasTarget = false;
                     StartIdle();
                 }
-            
+
                 return;
             }
         }
@@ -115,9 +115,9 @@ using System.Collections;
             Stop();
             return;
         }
-        
+
         CancelIdle();
-        
+
         isWandering = false;
         target = newTarget;
         targetPos = newTarget.position;
@@ -129,7 +129,7 @@ using System.Collections;
     public void GoTo(Vector2 newPos)
     {
         CancelIdle();
-        
+
         isWandering = false;
         target = null;
         targetPos = newPos;
@@ -141,7 +141,7 @@ using System.Collections;
     public void Stop()
     {
         CancelIdle();
-        
+
         isWandering = false;
         hasTarget = false;
         target = null;
@@ -155,11 +155,11 @@ using System.Collections;
     public void StartWandering()
     {
         CancelIdle();
-        
+
         isWandering = true;
         hasTarget = false;
         target = null;
-        
+
         path.Clear();
         pathIndex = 0;
 
@@ -173,7 +173,7 @@ using System.Collections;
             ReachTarget();
             return;
         }
-        
+
         Vector2 nextPos = path[pathIndex];
         Vector2 direction = nextPos - rb.position;
 
@@ -187,11 +187,11 @@ using System.Collections;
             }
             return;
         }
-        
+
         direction.Normalize();
-        
+
         rb.linearVelocity = direction * speed;
-        
+
         NPCanim.horizontal = direction.x;
         NPCanim.vertical = direction.y;
         NPCanim.isMoving = true;
@@ -224,9 +224,9 @@ using System.Collections;
         {
             return;
         }
-        
+
         CancelIdle();
-        
+
         float idleTime = Random.Range(minIdle, maxIdle);
         idleCoroutine = StartCoroutine(IdleThenWander(idleTime));
     }
@@ -234,9 +234,9 @@ using System.Collections;
     private IEnumerator IdleThenWander(float idleTime)
     {
         StopMovement();
-        
-        yield return new  WaitForSeconds(idleTime);
-        
+
+        yield return new WaitForSeconds(idleTime);
+
         idleCoroutine = null;
 
         if (isWandering)
@@ -261,18 +261,18 @@ using System.Collections;
             {
                 continue;
             }
-            
+
             direction.Normalize();
-            
+
             float distance = Random.Range(minWanderDis, Mathf.Min(maxWanderDis, wanderRadius));
-            
+
             Vector2 newPosition = rb.position + direction * distance;
 
             if (!isWalkable(newPosition))
             {
                 continue;
             }
-            
+
             List<Vector2> newPath = FindPath(rb.position, newPosition);
 
             if (newPath == null || newPath.Count == 0)
@@ -285,10 +285,10 @@ using System.Collections;
             path = newPath;
             pathIndex = 0;
             hasTarget = true;
-            
+
             return;
         }
-        
+
         StartIdle();
     }
 
@@ -315,7 +315,7 @@ using System.Collections;
             ReachTarget();
             return;
         }
-        
+
         List<Vector2> newPath = FindPath(startPos, destination);
 
         if (newPath == null || newPath.Count == 0)
@@ -323,7 +323,7 @@ using System.Collections;
             hasTarget = false;
             return;
         }
-        
+
         path = newPath;
     }
 
@@ -344,13 +344,13 @@ using System.Collections;
 
         List<PathNode> openNodes = new List<PathNode>();
         HashSet<Vector3Int> closedCells = new HashSet<Vector3Int>();
-        
+
         PathNode startNode = new PathNode(startCell, null, 0f, GetDistance(startCell, targetCell));
-        
+
         openNodes.Add(startNode);
-        
+
         int iterations = 0;
-        
+
         while (openNodes.Count > 0)
         {
             iterations++;
@@ -359,9 +359,9 @@ using System.Collections;
             {
                 return null;
             }
-            
+
             PathNode currentNode = GetBestNode(openNodes);
-            
+
             openNodes.Remove(currentNode);
             closedCells.Add(currentNode.cell);
 
@@ -386,15 +386,15 @@ using System.Collections;
                 {
                     continue;
                 }
-                
-                float newCost = currentNode.gCost + GetDistance(currentNode.cell,  neighbour);
-                
+
+                float newCost = currentNode.gCost + GetDistance(currentNode.cell, neighbour);
+
                 PathNode existingNode = openNodes.Find(node => node.cell == neighbour);
 
                 if (existingNode == null)
                 {
                     PathNode newNode = new PathNode(neighbour, currentNode, newCost, GetDistance(neighbour, targetCell));
-                    
+
                     openNodes.Add(newNode);
                 }
                 else if (newCost < existingNode.gCost)
@@ -418,14 +418,14 @@ using System.Collections;
 
             currentNode = currentNode.parent;
         }
-        
+
         newPath.Reverse();
 
         if (newPath.Count > 0)
         {
             newPath.RemoveAt(0);
         }
-        
+
         return newPath;
     }
 
@@ -440,7 +440,7 @@ using System.Collections;
                 bestNode = nodes[i];
             }
         }
-        
+
         return bestNode;
     }
 
@@ -451,18 +451,18 @@ using System.Collections;
 
         if (xDistance > yDistance)
         {
-            return 1.414f * yDistance  + (xDistance - yDistance);
+            return 1.414f * yDistance + (xDistance - yDistance);
         }
-        
+
         return 1.414f * xDistance + (yDistance - xDistance);
     }
 
     private IEnumerable<Vector3Int> GetNeighbours(Vector3Int cell)
     {
-        yield  return cell + Vector3Int.up;
-        yield  return cell + Vector3Int.down;
-        yield  return cell + Vector3Int.left;
-        yield  return cell + Vector3Int.right;
+        yield return cell + Vector3Int.up;
+        yield return cell + Vector3Int.down;
+        yield return cell + Vector3Int.left;
+        yield return cell + Vector3Int.right;
         yield return cell + new Vector3Int(1, 1, 0);
         yield return cell + new Vector3Int(-1, 1, 0);
         yield return cell + new Vector3Int(1, -1, 0);
@@ -477,9 +477,9 @@ using System.Collections;
     private bool CanMoveDiagonally(Vector3Int firstCell, Vector3Int secondCell)
     {
         Vector3Int horizontalCell = new Vector3Int(secondCell.x, firstCell.y, firstCell.z);
-        
+
         Vector3Int verticalCell = new Vector3Int(firstCell.x, secondCell.y, firstCell.z);
-        
+
         return isWalkable(horizontalCell) && isWalkable(verticalCell);
     }
 
@@ -493,7 +493,7 @@ using System.Collections;
         Vector2 cellPos = walkableTile.GetCellCenterWorld(cell);
 
         Collider2D obstacle = Physics2D.OverlapCircle(cellPos, oblstacCheckRadius, obstacleLayer);
-        
+
         return obstacle == null;
     }
 
@@ -520,7 +520,7 @@ using System.Collections;
                 }
             }
         }
-        
+
         return new Vector3Int(int.MaxValue, int.MinValue, 0);
     }
 
@@ -572,4 +572,3 @@ using System.Collections;
         }
     }
 }
-

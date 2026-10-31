@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [Header("Health")]
     public int maxHealth = 100;
     public int currentHealth;
-    
+
     [Header("Stamina")]
     public float maxStamina = 100;
     public float currentStamina;

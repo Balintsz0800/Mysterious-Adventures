@@ -4,7 +4,7 @@ using UnityEngine;
 public class InvManager : MonoBehaviour
 {
     public static InvManager instance;
-    
+
     public InvSlot[] slots;
     private int selectedSlot = -1;
     public GameObject inventory;
@@ -23,7 +23,7 @@ public class InvManager : MonoBehaviour
     {
         instance = this;
     }
-    
+
     void Start()
     {
         ChangeSelectedSlot(0);
@@ -100,7 +100,7 @@ public class InvManager : MonoBehaviour
 
         slots[newValue].Select();
         selectedSlot = newValue;
-        
+
         UpdateHand();
     }
 
@@ -137,16 +137,16 @@ public class InvManager : MonoBehaviour
         {
             invItem.RefreshCount();
         }
-        
+
         UpdateHand();
     }
 
     private void SpawnNewItem(Item item, InvSlot slot, int amount)
     {
         GameObject newItem = Instantiate(invItemPrefab, slot.transform);
-        
+
         InvItem invItem = newItem.GetComponent<InvItem>();
-        
+
         invItem.initaliseItem(item);
         invItem.count = amount;
         invItem.RefreshCount();
@@ -161,11 +161,11 @@ public class InvManager : MonoBehaviour
     {
         if (selectedSlot < 0 || selectedSlot >= slots.Length)
         {
-            return null; 
+            return null;
         }
 
         InvSlot slot = slots[selectedSlot];
-        
+
         InvItem itemInSlot = slot.GetComponentInChildren<InvItem>();
 
         if (itemInSlot == null)
@@ -211,17 +211,17 @@ public class InvManager : MonoBehaviour
                     {
                         UpdateHand();
                     }
-                    
+
                     return true;
                 }
             }
-            
+
             for (int i = 0; i < slots.Length; i++)
             {
                 if (slots[i].GetComponentInChildren<InvItem>() == null)
                 {
                     SpawnNewItem(item, slots[i], amount);
-                
+
                     return true;
                 }
             }
@@ -238,7 +238,7 @@ public class InvManager : MonoBehaviour
                 {
                     SpawnNewItem(item, slots[i], 1);
                     placed = true;
-                    
+
                     break;
                 }
             }
@@ -267,13 +267,13 @@ public class InvManager : MonoBehaviour
         {
             return;
         }
-        
+
         InvSlot invSlot = slots[selectedSlot];
         InvItem invItem = invSlot.GetComponentInChildren<InvItem>();
 
         if (invItem != null && invItem.item != null && invItem.item.handPrefab != null)
         {
-            if (handPoint != null &&  invItem.item.carryable)
+            if (handPoint != null && invItem.item.carryable)
             {
                 anim.carrying = true;
                 currentHandItem = Instantiate(invItem.item.handPrefab, handPoint);

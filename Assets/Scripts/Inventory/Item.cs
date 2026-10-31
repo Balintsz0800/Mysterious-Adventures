@@ -9,7 +9,7 @@ public class Item : ScriptableObject
     public int durability;
     public bool stackable;
     public bool carryable;
-    
+
     public Sprite image;
 
     public enum ItemType

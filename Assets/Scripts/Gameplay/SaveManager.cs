@@ -7,7 +7,7 @@ public class SaveManager : MonoBehaviour
     public static SaveManager Instance;
 
     [SerializeField] private int slotCount = 3;
-    
+
     private float playtimeTimer;
     public int CurrentSlot = -1;
 
@@ -18,7 +18,7 @@ public class SaveManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
@@ -42,8 +42,8 @@ public class SaveManager : MonoBehaviour
         data.slot = slot;
         data.worldName = "World" + (slot + 1);
         data.lastPlayed = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
-        data.playtime =  0f;
-        
+        data.playtime = 0f;
+
         SaveDataToFile(data);
 
         CurrentSlot = slot;
@@ -56,14 +56,14 @@ public class SaveManager : MonoBehaviour
         {
             return;
         }
-        
+
         SaveData data = LoadDataFromFile(slot);
 
         if (data == null)
         {
             return;
         }
-        
+
         CurrentSlot = slot;
         playtimeTimer = data.playtime;
     }
@@ -74,17 +74,17 @@ public class SaveManager : MonoBehaviour
         {
             return;
         }
-        
+
         SaveData data = LoadDataFromFile(CurrentSlot);
 
         if (data == null)
         {
             return;
         }
-        
+
         data.playtime = playtimeTimer;
         data.lastPlayed = DateTime.Now.ToString("dd-MM-yyyy HH:mm");
-        
+
         SaveDataToFile(data);
     }
 
@@ -96,14 +96,14 @@ public class SaveManager : MonoBehaviour
         {
             return null;
         }
-        
-        string json =  File.ReadAllText(path);
+
+        string json = File.ReadAllText(path);
         return JsonUtility.FromJson<SaveData>(json);
     }
 
     private void SaveDataToFile(SaveData data)
     {
-        string json =  JsonUtility.ToJson(data, true);
+        string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(GetSavePath(data.slot), json);
     }
 
@@ -115,7 +115,7 @@ public class SaveManager : MonoBehaviour
         {
             Directory.CreateDirectory(saveFolder);
         }
-        
+
         return Path.Combine(saveFolder, "save" + slot + ".json");
     }
 
@@ -125,7 +125,7 @@ public class SaveManager : MonoBehaviour
         {
             return null;
         }
-        
+
         return LoadDataFromFile(slot);
     }
 

@@ -10,7 +10,7 @@ public class InvSlot : MonoBehaviour, IDropHandler
 
     private void Awake()
     {
-     Deselect();   
+        Deselect();
     }
 
     public void Select()

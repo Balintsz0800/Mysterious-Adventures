@@ -1348558,7 +1348558,7 @@ MonoBehaviour:
   currentTime: 7.5
   timeText: {fileID: 1979885826}
   clockui: {fileID: 321787331}
-  light: {fileID: 619394801}
+  targetLight: {fileID: 619394801}
   lightChangeSpeed: 1
   audioSource: {fileID: 1651034786}
   day: {fileID: 8300000, guid: 1e0a636cb391db94fb2c8ca8dfe284ff, type: 3}

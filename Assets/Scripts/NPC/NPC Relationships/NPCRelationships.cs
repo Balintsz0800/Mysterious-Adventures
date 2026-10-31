@@ -4,7 +4,7 @@ public class NPCRelationships : MonoBehaviour
 {
     [Header("NPC Relationships")]
     public int relationship;
-    
+
     [SerializeField] private int minRelationship = -100;
     [SerializeField] private int maxRelationship = 100;
 
@@ -19,5 +19,5 @@ public class NPCRelationships : MonoBehaviour
         relationship = value;
         relationship = Mathf.Clamp(value, minRelationship, maxRelationship);
     }
-    
+
 }

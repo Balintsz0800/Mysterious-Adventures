@@ -7,7 +7,7 @@ public class Pickup : MonoBehaviour
     [SerializeField] private float pickupDis;
     public LayerMask itemLayer;
     public TMP_Text pickupText;
-    
+
     private PlayerMovement playerMovement;
 
     private void Start()
@@ -20,14 +20,14 @@ public class Pickup : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Vector2 dir = playerMovement.FacingDir;
-            
+
             RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, pickupDis, itemLayer);
 
             if (hit.collider != null)
             {
                 Debug.Log("hit: " + hit.collider.gameObject.name);
-                
-                worldItem item =  hit.collider.GetComponent<worldItem>();
+
+                worldItem item = hit.collider.GetComponent<worldItem>();
 
                 if (item != null)
                 {

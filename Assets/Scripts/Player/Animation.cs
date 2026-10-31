@@ -12,7 +12,7 @@ public class Animation : MonoBehaviour
 
     [SerializeField] private RuntimeAnimatorController run;
     [SerializeField] private RuntimeAnimatorController carry;
-    
+
 
     private void Awake()
     {
@@ -21,11 +21,6 @@ public class Animation : MonoBehaviour
 
     private void Update()
     {
-        animator.SetFloat("Horizontal", horizontal);
-        animator.SetFloat("Vertical", vertical);
-        animator.SetBool("isMoving", isMoving);
-        animator.SetBool("carrying", carrying);
-
         if (!carrying)
         {
             animator.runtimeAnimatorController = run;
@@ -33,6 +28,12 @@ public class Animation : MonoBehaviour
         else
         {
             animator.runtimeAnimatorController = carry;
+
+            animator.SetBool("carrying", carrying);
         }
+
+        animator.SetFloat("Horizontal", horizontal);
+        animator.SetFloat("Vertical", vertical);
+        animator.SetBool("isMoving", isMoving);
     }
 }

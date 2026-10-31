@@ -7,7 +7,7 @@ public class worldItem : MonoBehaviour
 
     public void Pickup()
     {
-        InvManager invManager = FindObjectOfType<InvManager>();
+        InvManager invManager = FindFirstObjectByType<InvManager>();
 
         if (invManager.AddItem(item, amount))
         {

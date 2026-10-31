@@ -70,9 +70,9 @@ public class PauseMenu : MonoBehaviour
             SaveManager.Instance.SaveWorld();
         }
     }
-    
+
     public void Quit()
-    {    
+    {
         SaveManager.Instance.SaveWorld();
         Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene");

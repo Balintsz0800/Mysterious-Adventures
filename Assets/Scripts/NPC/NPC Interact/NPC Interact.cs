@@ -7,7 +7,7 @@ public class NPCInteract : MonoBehaviour
 {
     [SerializeField] private float InteractDistance = 3f;
     [SerializeField] private LayerMask npcLayer;
-    
+
     private NPC currentNpc = null;
     private PlayerMovement playerMovement;
 
@@ -22,13 +22,13 @@ public class NPCInteract : MonoBehaviour
         {
             return;
         }
-        
+
         Vector2 facingDir = playerMovement.FacingDir;
-        
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, facingDir, InteractDistance, npcLayer);
 
         NPC hitnpc = null;
-        
+
         if (hit.collider != null)
         {
             hitnpc = hit.collider.GetComponent<NPC>();
@@ -40,7 +40,7 @@ public class NPCInteract : MonoBehaviour
             {
                 currentNpc.interactText.SetActive(false);
             }
-            
+
             currentNpc = hitnpc;
 
             if (currentNpc != null && currentNpc.interactText != null)
@@ -61,7 +61,7 @@ public class NPCInteract : MonoBehaviour
         {
             currentNpc.interactText.SetActive(false);
         }
-        
+
         currentNpc = null;
     }
 }

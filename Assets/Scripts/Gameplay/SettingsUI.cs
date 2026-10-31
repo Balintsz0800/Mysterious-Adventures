@@ -10,26 +10,26 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] private Slider masterVolumeSlider;
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
-    
+
     [SerializeField] private TMP_Dropdown outputDeviceDropdown;
-    
+
     [Header("Graphics UI")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private TMP_Dropdown displayModeDropdown;
     [SerializeField] private TMP_Dropdown fpsLimitDropdown;
     [SerializeField] private Toggle vSyncToggle;
-    
+
     private SettingsManager settingsManager;
 
     private void Start()
     {
         settingsManager = SettingsManager.Instance;
-        
+
         if (settingsManager == null)
         {
             return;
         }
-        
+
         SetupResolutionOptions();
         SetupDisplayModeOptions();
         SetupFPSOptions();
@@ -69,9 +69,9 @@ public class SettingsUI : MonoBehaviour
         {
             return;
         }
-        
+
         resolutionDropdown.ClearOptions();
-        
+
         List<string> options = new List<string>();
         List<Resolution> resolutions = settingsManager.availableResolutions;
 
@@ -79,7 +79,7 @@ public class SettingsUI : MonoBehaviour
         {
             options.Add(resolutions[i].width + " x " + resolutions[i].height);
         }
-        
+
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.SetValueWithoutNotify(settingsManager.selectedResolution);
         resolutionDropdown.RefreshShownValue();
@@ -91,10 +91,10 @@ public class SettingsUI : MonoBehaviour
         {
             return;
         }
-        
+
         displayModeDropdown.ClearOptions();
-        displayModeDropdown.AddOptions(new List<string>{"Fullscreen", "BorderLess", "Windowed"});
-        
+        displayModeDropdown.AddOptions(new List<string> { "Fullscreen", "BorderLess", "Windowed" });
+
         displayModeDropdown.SetValueWithoutNotify(settingsManager.selectedDisplayMode);
         displayModeDropdown.RefreshShownValue();
     }
@@ -105,10 +105,10 @@ public class SettingsUI : MonoBehaviour
         {
             return;
         }
-        
+
         fpsLimitDropdown.ClearOptions();
-        fpsLimitDropdown.AddOptions(new List<string> {"30 FPS", "60 FPS", "120 FPS", "144 FPS", "240 FPS", "Unlimited"});
-        
+        fpsLimitDropdown.AddOptions(new List<string> { "30 FPS", "60 FPS", "120 FPS", "144 FPS", "240 FPS", "Unlimited" });
+
         fpsLimitDropdown.SetValueWithoutNotify(settingsManager.GetSavedFPSLimitIndex());
         fpsLimitDropdown.RefreshShownValue();
     }
@@ -119,10 +119,10 @@ public class SettingsUI : MonoBehaviour
         {
             return;
         }
-        
+
         outputDeviceDropdown.ClearOptions();
-        outputDeviceDropdown.AddOptions(new List<string> {"System Default"});
-        
+        outputDeviceDropdown.AddOptions(new List<string> { "System Default" });
+
         outputDeviceDropdown.SetValueWithoutNotify(0);
         outputDeviceDropdown.RefreshShownValue();
         outputDeviceDropdown.interactable = false;
@@ -134,7 +134,7 @@ public class SettingsUI : MonoBehaviour
         {
             return;
         }
-        
+
         int resIndex = resolutionDropdown != null ? resolutionDropdown.value : settingsManager.selectedResolution;
         int displayMode = displayModeDropdown != null ? displayModeDropdown.value : settingsManager.selectedDisplayMode;
         bool vSync = vSyncToggle != null ? vSyncToggle.isOn : settingsManager.vSyncEnabled;
@@ -149,7 +149,7 @@ public class SettingsUI : MonoBehaviour
         {
             return;
         }
-        
+
         settingsManager.ResetSettings();
 
         if (masterVolumeSlider != null)
@@ -197,7 +197,7 @@ public class SettingsUI : MonoBehaviour
         {
             return;
         }
-        
+
         if (masterVolumeSlider != null)
         {
             masterVolumeSlider.onValueChanged.RemoveListener(SettingsManager.Instance.SetMasterVolume);

@@ -45,5 +45,5 @@ public class InvItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
     }
-    
+
 }

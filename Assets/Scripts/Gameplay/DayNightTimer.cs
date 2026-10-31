@@ -16,12 +16,12 @@ public class DayNightTimer : MonoBehaviour
     private string lastPeriod = "";
 
     public ClockUI clockui;
-    
+
     [Header("Light")]
-    public Light2D light;
+    public Light2D targetLight;
     private float targetIntensity;
     [SerializeField] private float lightChangeSpeed = 1;
-    
+
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip day;
@@ -53,7 +53,7 @@ public class DayNightTimer : MonoBehaviour
             return Mathf.FloorToInt((currentTime - CurrentHour) * 60f);
         }
     }
-    
+
     private void Start()
     {
         audioSource.clip = day;
@@ -69,9 +69,9 @@ public class DayNightTimer : MonoBehaviour
         {
             currentTime = 0f;
         }
-        
+
         UpdateDayTime();
-        light.intensity = Mathf.Lerp(light.intensity, targetIntensity, lightChangeSpeed * Time.deltaTime);
+        targetLight.intensity = Mathf.Lerp(targetLight.intensity, targetIntensity, lightChangeSpeed * Time.deltaTime);
         timeText.text = currentTimeText;
     }
 
@@ -84,7 +84,7 @@ public class DayNightTimer : MonoBehaviour
     void UpdateDayTime()
     {
         string period;
-        
+
         if (currentTime >= 6f && currentTime < 8f)
         {
             period = "Morning";
@@ -106,7 +106,7 @@ public class DayNightTimer : MonoBehaviour
         {
             return;
         }
-        
+
         lastPeriod = period;
 
         if (period == "Morning")
@@ -161,8 +161,8 @@ public class DayNightTimer : MonoBehaviour
             StartCoroutine(ChangeMusic(day));
         }
     }
-    
-    void  SetNightMusic()
+
+    void SetNightMusic()
     {
         if (!isNight)
         {
@@ -178,7 +178,7 @@ public class DayNightTimer : MonoBehaviour
             audioSource.volume -= Time.deltaTime * audioChangeSpeed;
             yield return null;
         }
-        
+
         audioSource.clip = newClip;
         audioSource.Play();
 
@@ -189,4 +189,3 @@ public class DayNightTimer : MonoBehaviour
         }
     }
 }
-    

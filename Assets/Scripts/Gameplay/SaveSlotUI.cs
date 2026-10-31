@@ -28,7 +28,7 @@ public class SaveSlotUI : MonoBehaviour
             playtimeText.text = "";
             lastPlayedText.text = "";
             buttonText.text = "CREATE NEW WORLD";
-            
+
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(CreateWorld);
         }
@@ -36,9 +36,9 @@ public class SaveSlotUI : MonoBehaviour
         {
             worldName.text = data.worldName;
             playtimeText.text = "Played:  " + data.playtime.ToString("F2");
-            lastPlayedText.text = "Last played: "  + data.lastPlayed;
+            lastPlayedText.text = "Last played: " + data.lastPlayed;
             buttonText.text = "LOAD WORLD";
-            
+
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(LoadWorld);
         }

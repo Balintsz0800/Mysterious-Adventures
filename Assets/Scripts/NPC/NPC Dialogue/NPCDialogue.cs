@@ -38,7 +38,7 @@ public class NPCDialogue : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        
+
         if (dialogueUI != null)
         {
             dialogueUI.SetActive(false);
@@ -85,7 +85,7 @@ public class NPCDialogue : MonoBehaviour
             FinishDialogue();
             return;
         }
-        
+
         if (!dialogueActive)
         {
             return;
@@ -225,7 +225,7 @@ public class NPCDialogue : MonoBehaviour
 
         dialogueUI.SetActive(false);
         dialogueText.text = "";
-        
+
         dialogue.completed = true;
 
         if (dialogue.givesQuest && dialogue.questToGive != null)

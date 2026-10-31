@@ -5,9 +5,9 @@ using UnityEngine;
 {
     public int questID;
     public int questName;
-    
-    [TextArea(2,5)] public string questDescription;
-    
+
+    [TextArea(2, 5)] public string questDescription;
+
     [Header("Requirements")]
     public List<QuestRequirements> requirements = new List<QuestRequirements>();
 

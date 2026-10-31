@@ -3,11 +3,11 @@ using UnityEngine;
 public class StartScene : MonoBehaviour
 {
     [SerializeField] private GameObject currentWindow;
-    
+
     [Header("Play button")]
     [SerializeField] private GameObject mainButtons;
     [SerializeField] private GameObject playUI;
-    
+
     [Header("Options button")]
     [SerializeField] private GameObject optionsMenu;
 

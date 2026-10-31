@@ -2,21 +2,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class FootSpeps : MonoBehaviour
+public class FootSteps : MonoBehaviour
 {
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private AudioSource audioSource;
-    
+
     [SerializeField] private AudioClip GrassStep;
     [SerializeField] private AudioClip DirtStep;
     [SerializeField] private AudioClip StoneStep;
-    
+
     [SerializeField] private float stepInterval = 0.45f;
-    
+
     [SerializeField] private List<TileGroundData> TileGroundDatas;
-    
+
     private Dictionary<TileBase, GroundType> tileGroundType;
-    
+
     private float stepCounter;
     private Vector2 lastPos;
     public Animation anim;
@@ -40,7 +40,7 @@ public class FootSpeps : MonoBehaviour
                     tileGroundType.Add(tile, ground.groundType);
                 }
             }
-            
+
         }
     }
 
@@ -48,14 +48,14 @@ public class FootSpeps : MonoBehaviour
     {
 
         moving = anim.isMoving;
-        
+
         if (!moving)
         {
             stepCounter = 0f;
             audioSource.Stop();
             return;
         }
-        
+
         stepCounter -= Time.deltaTime;
 
         if (stepCounter <= 0f)
@@ -64,18 +64,17 @@ public class FootSpeps : MonoBehaviour
             stepCounter = stepInterval;
         }
     }
-    
+
 
     private void PlayStep()
     {
-        
         if (tilemap == null)
         {
             return;
         }
-        
+
         Vector3 worldPos = transform.position;
-        Vector3Int  tilePos = tilemap.WorldToCell(worldPos);
+        Vector3Int tilePos = tilemap.WorldToCell(worldPos);
         TileBase tile = tilemap.GetTile<TileBase>(tilePos);
 
         if (tile == null)
@@ -88,24 +87,31 @@ public class FootSpeps : MonoBehaviour
             return;
         }
 
+        float pitch = 0;
+
         switch (groundType)
         {
-            case  GroundType.Grass:
+            case GroundType.Grass:
                 stepInterval = 0.45f;
+                pitch = Random.Range(0.9f, 1.1f);
                 audioSource.clip = GrassStep;
                 break;
-            case  GroundType.Dirt:
+            case GroundType.Dirt:
                 stepInterval = 0.6f;
+                pitch = Random.Range(0.85f, 1.05f);
                 audioSource.clip = DirtStep;
                 break;
-            case  GroundType.Stone:
+            case GroundType.Stone:
                 stepInterval = 0.5f;
+                pitch = Random.Range(0.8f, 1f);
                 audioSource.clip = StoneStep;
                 break;
             default:
                 return;
         }
-        
+
+        audioSource.pitch = pitch;
+
         audioSource.Play();
     }
 }

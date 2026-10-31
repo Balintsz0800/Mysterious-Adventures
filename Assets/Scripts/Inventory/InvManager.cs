@@ -32,6 +32,17 @@ public class InvManager : MonoBehaviour
 
     void Update()
     {
+        InvItem activeItem = GetSelectedItem();
+
+        if (activeItem != null)
+        {
+            TileManager.Instance.ShowPreview(activeItem.item.tool);
+        }
+        else
+        {
+            TileManager.Instance.ShowPreview(false);
+        }
+
         if (Input.inputString != null)
         {
             bool isNumber = int.TryParse(Input.inputString, out int number);
@@ -111,9 +122,7 @@ public class InvManager : MonoBehaviour
             return;
         }
 
-        InvSlot invSlot = slots[selectedSlot];
-
-        InvItem invItem = invSlot.GetComponentInChildren<InvItem>();
+        InvItem invItem = GetSelectedItem();
 
         if (invItem == null || invItem.item == null)
         {
@@ -164,9 +173,7 @@ public class InvManager : MonoBehaviour
             return null;
         }
 
-        InvSlot slot = slots[selectedSlot];
-
-        InvItem itemInSlot = slot.GetComponentInChildren<InvItem>();
+        InvItem itemInSlot = GetSelectedItem();
 
         if (itemInSlot == null)
         {
@@ -268,8 +275,7 @@ public class InvManager : MonoBehaviour
             return;
         }
 
-        InvSlot invSlot = slots[selectedSlot];
-        InvItem invItem = invSlot.GetComponentInChildren<InvItem>();
+        InvItem invItem = GetSelectedItem();
 
         if (invItem != null && invItem.item != null && invItem.item.handPrefab != null)
         {
@@ -284,4 +290,12 @@ public class InvManager : MonoBehaviour
 
     }
 
+
+    public InvItem GetSelectedItem()
+    {
+        InvSlot invSlot = slots[selectedSlot];
+        InvItem invItem = invSlot.GetComponentInChildren<InvItem>();
+
+        return invItem;
+    }
 }

@@ -1,39 +1,47 @@
-using System;
 using TMPro;
 using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    [SerializeField] private float pickupDis;
-    public LayerMask itemLayer;
-    public TMP_Text pickupText;
+    [SerializeField] private float pickupRadius = 1f;
+    [SerializeField] private LayerMask itemLayer;
+    [SerializeField] private TMP_Text pickupText;
 
     private PlayerMovement playerMovement;
+    private WorldItem previousItem;
 
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, pickupRadius, itemLayer);
+
+        WorldItem itemNear = null;
+
+        if (hit != null)
         {
-            Vector2 dir = playerMovement.FacingDir;
+            itemNear = hit.GetComponent<WorldItem>();
+        }
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, pickupDis, itemLayer);
+        if (previousItem != null && previousItem != itemNear)
+        {
+            previousItem.RemoveOutline();
+        }
 
-            if (hit.collider != null)
+        if (itemNear != null)
+        {
+            itemNear.OutlineItem();
+
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("hit: " + hit.collider.gameObject.name);
-
-                worldItem item = hit.collider.GetComponent<worldItem>();
-
-                if (item != null)
-                {
-                    item.Pickup();
-                }
+                itemNear.Pickup();
+                itemNear = null;
             }
         }
+
+        previousItem = itemNear;
     }
 }

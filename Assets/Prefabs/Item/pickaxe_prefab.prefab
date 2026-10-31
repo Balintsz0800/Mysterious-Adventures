@@ -171,3 +171,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::worldItem
   item: {fileID: 11400000, guid: 84bfab661cf53214385c72fcaf248341, type: 2}
   amount: 1
+  defaultMaterial: {fileID: 2100000, guid: fa42a92be4c92ed40b127ed730ec6338, type: 2}
+  outlineMaterial: {fileID: 2100000, guid: ac3e3c2218309ef49a854e532fdad239, type: 2}

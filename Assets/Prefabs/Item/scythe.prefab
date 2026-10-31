@@ -81,12 +81,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -8702967748025807226, guid: 2b50c4bd2f8ec944b83855f3fa0866e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b50c4bd2f8ec944b83855f3fa0866e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.8125, y: 1.75}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -106,6 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::worldItem
   item: {fileID: 11400000, guid: 63459043374b716438f6658f4de895a4, type: 2}
   amount: 1
+  defaultMaterial: {fileID: 2100000, guid: fa42a92be4c92ed40b127ed730ec6338, type: 2}
+  outlineMaterial: {fileID: 2100000, guid: ac3e3c2218309ef49a854e532fdad239, type: 2}
 --- !u!68 &981830671783993305
 EdgeCollider2D:
   m_ObjectHideFlags: 0

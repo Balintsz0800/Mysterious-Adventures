@@ -7,6 +7,7 @@ public class Item : ScriptableObject
     public GameObject itemPrefab;
     public GameObject handPrefab;
     public int durability;
+    public int maxDurability = 100;
     public bool stackable;
     public bool carryable;
 

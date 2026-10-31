@@ -53,7 +53,7 @@ public class DayNightTimer : MonoBehaviour
             return Mathf.FloorToInt((currentTime - CurrentHour) * 60f);
         }
     }
-
+    
     private void Start()
     {
         audioSource.clip = day;
@@ -78,6 +78,7 @@ public class DayNightTimer : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     void UpdateDayTime()

@@ -29,7 +29,12 @@ public class PlayerMovement : MonoBehaviour
             return new Vector2(lastHorizontalVector, lastVerticalVector).normalized;
         }
     }
-    
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();

@@ -6,26 +6,25 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private float interactRadius = 1f;
     [SerializeField] private TMP_Text pickupText;
 
-    private PlayerMovement playerMovement;
     private Interactable previousInteractable;
-
-    private void Start()
-    {
-        playerMovement = GetComponent<PlayerMovement>();
-    }
 
     private void Update()
     {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, interactRadius);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, interactRadius);
 
         Interactable interactableNear = null;
 
-        if (hit != null)
+        foreach (Collider2D hit in hits)
         {
-            interactableNear = hit.GetComponent<Interactable>();
+            if (hit.TryGetComponent(out Interactable interactable))
+            {
+                interactableNear = interactable;
+                break;
+            }
         }
 
-        if (previousInteractable != null && previousInteractable != interactableNear)
+        if (previousInteractable != null &&
+            previousInteractable != interactableNear)
         {
             previousInteractable.RemoveOutline();
         }
@@ -37,10 +36,14 @@ public class PlayerInteract : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 interactableNear.Interact();
-                interactableNear = null;
             }
         }
 
         previousInteractable = interactableNear;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, interactRadius);
     }
 }

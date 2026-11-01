@@ -5,7 +5,7 @@ public class WorldItem : MonoBehaviour, Interactable
 {
     public Item item;
     public int amount = 1;
-    
+
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
@@ -31,11 +31,13 @@ public class WorldItem : MonoBehaviour, Interactable
 
     public void Outline()
     {
+        if (spriteRenderer == null) return;
         spriteRenderer.material = MaterialManager.Instance.outlineMaterial;
     }
-    
+
     public void RemoveOutline()
     {
+        if (spriteRenderer == null) return;
         spriteRenderer.material = MaterialManager.Instance.defaultMaterial;
     }
 }

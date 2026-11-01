@@ -36,7 +36,7 @@ public class InvManager : MonoBehaviour
 
         if (activeItem != null)
         {
-            TileManager.Instance.ShowPreview(activeItem.item.tool);
+            TileManager.Instance.ShowPreview(activeItem.item is Tool);
         }
         else
         {

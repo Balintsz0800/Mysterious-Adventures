@@ -85,6 +85,14 @@ public class TileManager : MonoBehaviour
 
         return playerCamera.ScreenToWorldPoint(mousePosition);
     }
+    
+    public Vector3Int GetMouseCellPosition()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = Mathf.Abs(playerCamera.transform.position.z - tilemap.transform.position.z);
+        
+        return tilemap.WorldToCell(playerCamera.ScreenToWorldPoint(mousePosition));
+    }
 
     public void ShowPreview(bool show)
     {
@@ -118,5 +126,19 @@ public class TileManager : MonoBehaviour
             return tileType;
 
         return default;
+    }
+
+    public void ModifyTile(Vector3Int position, TileType tileType)
+    {
+        Vector3Int cellPosition = tilemap.WorldToCell(position);
+        TileBase tile = tilemap.GetTile(cellPosition);
+        
+        Debug.Log(cellPosition);
+        
+        if (tile == null) 
+            return;
+        
+        tilemap.SetTile(cellPosition, tileGroundData.Find(x => x.tileType == tileType).tiles[0]);
+        tiles[tile] = tileType;
     }
 }

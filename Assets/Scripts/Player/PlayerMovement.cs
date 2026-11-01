@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Player _player;
+    private static PlayerMovement instance;
 
     [Header("Movement")]
     [SerializeField] private float speed;
@@ -32,6 +33,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
         DontDestroyOnLoad(gameObject);
     }
 

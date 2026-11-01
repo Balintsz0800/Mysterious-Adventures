@@ -7,7 +7,8 @@ public class Ysort : MonoBehaviour
     [SerializeField] private int orderOffset;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-
+    public int SortingOrder => spriteRenderer.sortingOrder;
+    
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();

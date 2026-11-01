@@ -16,6 +16,7 @@ public class DayNightTimer : MonoBehaviour
     private string lastPeriod = "";
 
     public ClockUI clockui;
+    private Streetlight[] streetlights;
 
     [Header("Light")]
     public Light2D targetLight;
@@ -79,6 +80,7 @@ public class DayNightTimer : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        streetlights = FindObjectsByType<Streetlight>(FindObjectsSortMode.None);
     }
 
     void UpdateDayTime()
@@ -113,6 +115,10 @@ public class DayNightTimer : MonoBehaviour
         {
             Morning();
             clockui.Sunrise();
+            foreach (Streetlight streetlight in streetlights)
+            {
+                streetlight.TurnOff();
+            }
         }
         else if (period == "MidDay")
         {
@@ -123,6 +129,10 @@ public class DayNightTimer : MonoBehaviour
         {
             Evening();
             clockui.Sunset();
+            foreach (Streetlight streetlight in streetlights)
+            {
+                streetlight.TurnOn();
+            }
         }
         else
         {

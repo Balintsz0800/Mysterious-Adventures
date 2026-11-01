@@ -4,7 +4,6 @@ using UnityEngine.Tilemaps;
 
 public class FootSteps : MonoBehaviour
 {
-    [SerializeField] private Tilemap tilemap;
     [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private AudioClip GrassStep;
@@ -13,36 +12,10 @@ public class FootSteps : MonoBehaviour
 
     [SerializeField] private float stepInterval = 0.45f;
 
-    [SerializeField] private List<TileGroundData> TileGroundDatas;
-
-    private Dictionary<TileBase, GroundType> tileGroundType;
-
     private float stepCounter;
     private Vector2 lastPos;
     public Animation anim;
     public bool moving;
-
-    private void Awake()
-    {
-        tileGroundType = new Dictionary<TileBase, GroundType>();
-
-        foreach (var ground in TileGroundDatas)
-        {
-            if (ground == null || ground.tiles == null)
-            {
-                continue;
-            }
-
-            foreach (var tile in ground.tiles)
-            {
-                if (tile != null && !tileGroundType.ContainsKey(tile))
-                {
-                    tileGroundType.Add(tile, ground.groundType);
-                }
-            }
-
-        }
-    }
 
     private void Update()
     {
@@ -68,40 +41,25 @@ public class FootSteps : MonoBehaviour
 
     private void PlayStep()
     {
-        if (tilemap == null)
-        {
-            return;
-        }
-
-        Vector3 worldPos = transform.position;
-        Vector3Int tilePos = tilemap.WorldToCell(worldPos);
-        TileBase tile = tilemap.GetTile<TileBase>(tilePos);
-
-        if (tile == null)
-        {
-            return;
-        }
-
-        if (!tileGroundType.TryGetValue(tile, out GroundType groundType))
-        {
-            return;
-        }
+        TileType groundType = TileManager.Instance.GetTileType(transform.position);
+        
+        Debug.Log(groundType);
 
         float pitch = 0;
 
         switch (groundType)
         {
-            case GroundType.Grass:
+            case TileType.Grass:
                 stepInterval = 0.45f;
                 pitch = Random.Range(0.9f, 1.1f);
                 audioSource.clip = GrassStep;
                 break;
-            case GroundType.Dirt:
+            case TileType.Dirt:
                 stepInterval = 0.6f;
                 pitch = Random.Range(0.85f, 1.05f);
                 audioSource.clip = DirtStep;
                 break;
-            case GroundType.Stone:
+            case TileType.Stone:
                 stepInterval = 0.5f;
                 pitch = Random.Range(0.8f, 1f);
                 audioSource.clip = StoneStep;

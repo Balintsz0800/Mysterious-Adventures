@@ -227,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InvItem
   image: {fileID: 5456125296430964687}
   countText: {fileID: 3028340701221206106}
-  item: {fileID: 11400000, guid: bba28c1efe4eed14d8036def6fa2d464, type: 2}
+  item: {fileID: 11400000, guid: 9d373b9e7d1e16443804cde66ec68a85, type: 2}
   currentDurability: 0
   count: 1
   parentAfterDrag: {fileID: 0}

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -14,6 +13,12 @@ public class DayNightTimer : MonoBehaviour
     public TMP_Text timeText;
     private bool isNight;
     private string lastPeriod = "";
+
+    [Header ("Season")]
+    public string[] seasons = {"Spring", "Summer", "Autumn", "Winter"};
+    public int currentSeason = 0;
+    public int currentDay = 1;
+    [SerializeField] private int daysPerSeason = 28;    
 
     public ClockUI clockui;
     private Streetlight[] streetlights;
@@ -55,6 +60,14 @@ public class DayNightTimer : MonoBehaviour
         }
     }
 
+    public string CurrentSeason
+    {
+        get
+        {
+            return seasons[currentSeason];
+        }
+    }
+
     private void Start()
     {
         audioSource.clip = day;
@@ -62,13 +75,14 @@ public class DayNightTimer : MonoBehaviour
         UpdateDayTime();
     }
 
-    void Update()
+    private void Update()
     {
         currentTime += (24f / dayLength) * Time.deltaTime;
 
         if (currentTime >= 24f)
         {
             currentTime = 0f;
+            NextDay();
         }
 
         UpdateDayTime();
@@ -76,11 +90,28 @@ public class DayNightTimer : MonoBehaviour
         timeText.text = currentTimeText;
     }
 
-    void Awake()
+    private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
         streetlights = FindObjectsByType<Streetlight>(FindObjectsSortMode.None);
+    }
+
+    private void NextDay()
+    {
+        currentDay++;
+
+        if (currentDay > daysPerSeason)
+        {
+            currentDay = 1;
+            currentSeason = (currentSeason + 1) % seasons.Length;
+        }
     }
 
     void UpdateDayTime()
@@ -141,29 +172,29 @@ public class DayNightTimer : MonoBehaviour
         }
     }
 
-    void Morning()
+    private void Morning()
     {
         targetIntensity = 0.6f;
         SetDayMusic();
     }
 
-    void Day()
+    private void Day()
     {
         targetIntensity = 1f;
     }
 
-    void Evening()
+    private void Evening()
     {
         targetIntensity = 0.4f;
         SetNightMusic();
     }
 
-    void Night()
+    private void Night()
     {
         targetIntensity = 0.13f;
     }
 
-    void SetDayMusic()
+    private void SetDayMusic()
     {
         if (isNight)
         {
@@ -172,7 +203,7 @@ public class DayNightTimer : MonoBehaviour
         }
     }
 
-    void SetNightMusic()
+    private void SetNightMusic()
     {
         if (!isNight)
         {

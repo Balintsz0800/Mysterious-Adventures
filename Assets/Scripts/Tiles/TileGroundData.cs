@@ -5,6 +5,6 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "TileGroundData", menuName = "2D/Tile Ground Data")]
 public class TileGroundData : ScriptableObject
 {
-    public GroundType groundType;
+    public TileType tileType;
     public List<TileBase> tiles;
 }

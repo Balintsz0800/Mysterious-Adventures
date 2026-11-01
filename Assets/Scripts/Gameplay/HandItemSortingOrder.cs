@@ -20,11 +20,11 @@ public class HandItemSortingOrder : MonoBehaviour
         
         if (playerMovement.FacingDir.y > 0)
         {
-            spriteRenderer.sortingOrder = playerY.SortingOrder -1;
+            spriteRenderer.sortingOrder = playerY.SortingOrder -2;
         }
         else
         {
-            spriteRenderer.sortingOrder = playerY.SortingOrder + 1;
+            spriteRenderer.sortingOrder = playerY.SortingOrder + 2;
         }
     }
 }

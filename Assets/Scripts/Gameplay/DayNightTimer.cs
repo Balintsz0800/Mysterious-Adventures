@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class DayNightTimer : MonoBehaviour
 {
@@ -57,8 +58,12 @@ public class DayNightTimer : MonoBehaviour
 
     private void Start()
     {
-        audioSource.clip = day;
-        audioSource.Play();
+        if (audioSource != null)
+        {
+            audioSource.clip = day;
+            audioSource.Play();
+        }
+
         UpdateDayTime();
     }
 
@@ -72,15 +77,51 @@ public class DayNightTimer : MonoBehaviour
         }
 
         UpdateDayTime();
-        targetLight.intensity = Mathf.Lerp(targetLight.intensity, targetIntensity, lightChangeSpeed * Time.deltaTime);
-        timeText.text = currentTimeText;
+        if (targetLight != null)
+            targetLight.intensity = Mathf.Lerp(targetLight.intensity, targetIntensity, lightChangeSpeed * Time.deltaTime);
+
+        if (timeText != null)
+            timeText.text = currentTimeText;
     }
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        RefreshSceneReferences();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Do not carry gameplay-only objects back into the title screen.
+        // Their scene references are destroyed during the load.
+        if (scene.name == "StartScene")
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        RefreshSceneReferences();
+    }
+
+    private void RefreshSceneReferences()
+    {
         streetlights = FindObjectsByType<Streetlight>(FindObjectsSortMode.None);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if (Instance == this)
+            Instance = null;
     }
 
     void UpdateDayTime()
@@ -114,7 +155,7 @@ public class DayNightTimer : MonoBehaviour
         if (period == "Morning")
         {
             Morning();
-            clockui.Sunrise();
+            if (clockui != null) clockui.Sunrise();
             foreach (Streetlight streetlight in streetlights)
             {
                 streetlight.TurnOff();
@@ -123,12 +164,12 @@ public class DayNightTimer : MonoBehaviour
         else if (period == "MidDay")
         {
             Day();
-            clockui.MidDay();
+            if (clockui != null) clockui.MidDay();
         }
         else if (period == "Evening")
         {
             Evening();
-            clockui.Sunset();
+            if (clockui != null) clockui.Sunset();
             foreach (Streetlight streetlight in streetlights)
             {
                 streetlight.TurnOn();
@@ -137,7 +178,7 @@ public class DayNightTimer : MonoBehaviour
         else
         {
             Night();
-            clockui.Night();
+            if (clockui != null) clockui.Night();
         }
     }
 

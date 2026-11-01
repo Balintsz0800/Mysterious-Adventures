@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Start()
@@ -88,6 +90,29 @@ public class PlayerMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        cam.transform.position = player.position + offset;
+        if (cam != null && player != null)
+            cam.transform.position = player.position + offset;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Prevent an old player from suppressing the fresh player created when a
+        // new game is launched from StartScene.
+        if (scene.name == "StartScene")
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        if (cam == null)
+            cam = Camera.main;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if (instance == this)
+            instance = null;
     }
 }

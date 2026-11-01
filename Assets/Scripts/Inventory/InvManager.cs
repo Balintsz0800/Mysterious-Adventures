@@ -22,27 +22,16 @@ public class InvManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        ChangeSelectedSlot(0);
     }
 
     void Start()
     {
-        ChangeSelectedSlot(0);
         inventory.SetActive(false);
     }
 
     void Update()
     {
-        InvItem activeItem = GetSelectedItem();
-
-        if (activeItem != null)
-        {
-            TileManager.Instance.ShowPreview(activeItem.item is Tool);
-        }
-        else
-        {
-            TileManager.Instance.ShowPreview(false);
-        }
-
         if (Input.inputString != null)
         {
             bool isNumber = int.TryParse(Input.inputString, out int number);
@@ -99,6 +88,17 @@ public class InvManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             DropSelectedItem();
+        }
+        
+        InvItem activeItem = GetSelectedItem();
+
+        if (activeItem != null)
+        {
+            TileManager.Instance.ShowPreview(activeItem.item is Tool);
+        }
+        else
+        {
+            TileManager.Instance.ShowPreview(false);
         }
     }
 

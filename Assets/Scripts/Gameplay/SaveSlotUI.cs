@@ -13,6 +13,8 @@ public class SaveSlotUI : MonoBehaviour
     [SerializeField] private TMP_Text buttonText;
     [SerializeField] private Button button;
 
+    private bool isLoadingGame;
+
     private void Start()
     {
         UpdateSlotUI();
@@ -20,6 +22,12 @@ public class SaveSlotUI : MonoBehaviour
 
     private void UpdateSlotUI()
     {
+        if (SaveManager.Instance == null)
+        {
+            Debug.LogError("SaveSlotUI requires a SaveManager in StartScene.", this);
+            return;
+        }
+
         SaveData data = SaveManager.Instance.GetSlotData(slot);
 
         if (data == null)
@@ -46,19 +54,29 @@ public class SaveSlotUI : MonoBehaviour
 
     public void CreateWorld()
     {
+        if (SaveManager.Instance == null)
+            return;
+
         SaveManager.Instance.CreateWorld(slot);
         LoadGameScene();
     }
 
     public void LoadWorld()
     {
+        if (SaveManager.Instance == null)
+            return;
+
         SaveManager.Instance.LoadWorld(slot);
         LoadGameScene();
     }
 
     private void LoadGameScene()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        if (isLoadingGame)
+            return;
+
+        isLoadingGame = true;
         Time.timeScale = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("SampleScene");
     }
 }

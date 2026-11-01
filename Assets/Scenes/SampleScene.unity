@@ -427,15 +427,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6904898ccadf94d832a813b5138ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FootSpeps
-  tilemap: {fileID: 1346794050}
   audioSource: {fileID: 768033570}
   GrassStep: {fileID: 8300000, guid: 308f52a37755f034a810a21aff865bf0, type: 3}
   DirtStep: {fileID: 8300000, guid: 7aa5bdf838ef5b745a4e73ed9f3957b4, type: 3}
   StoneStep: {fileID: 8300000, guid: f2cb2f3f3f7d9134d88a30d8916b3887, type: 3}
   stepInterval: 1
-  TileGroundDatas:
-  - {fileID: 11400000, guid: ffad24c5f688c8840b42a2e11437e635, type: 2}
-  - {fileID: 11400000, guid: f5e1aeffb66da394b9a165ba7cdf3281, type: 2}
   anim: {fileID: 21980754}
   moving: 0
 --- !u!114 &21980759
@@ -1348799,6 +1348795,9 @@ MonoBehaviour:
   preview: {fileID: 532600599}
   playerCamera: {fileID: 519420031}
   tilemap: {fileID: 1346794050}
+  tileGroundData:
+  - {fileID: 11400000, guid: ffad24c5f688c8840b42a2e11437e635, type: 2}
+  - {fileID: 11400000, guid: f5e1aeffb66da394b9a165ba7cdf3281, type: 2}
 --- !u!114 &2117331476 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4523110087818411409, guid: f9482141cf88c3e428736ac71647dcfa, type: 3}

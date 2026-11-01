@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f2de00824a628e45b3bf973d8a0c562, type: 3}
   m_Name: Dirt
   m_EditorClassIdentifier: Assembly-CSharp::TileGroundData
-  groundType: 1
+  tileType: 1
   tiles:
   - {fileID: 11400000, guid: f763f80ef7053c045b511b4ff500b3f5, type: 2}

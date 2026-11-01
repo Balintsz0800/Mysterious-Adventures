@@ -3,11 +3,20 @@ using UnityEngine;
 
 public class PlayerTool : MonoBehaviour
 {
+    private InvManager invManager;
+    
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (invManager == null)
         {
-            if (InvManager.instance.GetSelectedItem().item is Tool tool)
+            invManager = InvManager.instance;
+        }
+        
+        InvItem selectedItem = invManager.GetSelectedItem();
+        
+        if (Input.GetMouseButtonDown(0) && TileManager.Instance.HoveredTileInRange())
+        {
+            if (selectedItem != null && selectedItem.item is Tool tool)
             {
                 tool.Use();
             }

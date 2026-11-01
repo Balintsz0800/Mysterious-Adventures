@@ -168,7 +168,6 @@ GameObject:
   - component: {fileID: 21980753}
   - component: {fileID: 21980752}
   - component: {fileID: 21980751}
-  - component: {fileID: 21980750}
   - component: {fileID: 21980756}
   - component: {fileID: 21980754}
   - component: {fileID: 21980757}
@@ -262,22 +261,6 @@ Transform:
   - {fileID: 1126637435}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &21980750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 21980747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38db40176c8f4c48aaa4dd25aa32bea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPCInteract
-  InteractDistance: 3
-  npcLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!70 &21980751
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -408,13 +391,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 21980747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29db7b818d0ea8044b2b1103df34b585, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b5e8b6493e04872b4a4496091c1be10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pickup
-  pickupRadius: 1
-  itemLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  interactRadius: 2
   pickupText: {fileID: 0}
 --- !u!114 &21980758
 MonoBehaviour:
@@ -12225,6 +12205,7 @@ MonoBehaviour:
   dialogue: {fileID: 0}
   npcID: Major
   movement: {fileID: 1084034777}
+  spriteRenderer: {fileID: 1084034770}
 --- !u!114 &1084034773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1348786,6 +1348767,52 @@ RectTransform:
   m_AnchoredPosition: {x: -215.49997, y: 0}
   m_SizeDelta: {x: 119, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2105482510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2105482511}
+  - component: {fileID: 2105482512}
+  m_Layer: 0
+  m_Name: MaterialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2105482511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105482510}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2105482512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105482510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9834b095ebc84248bf30e18e6cbea8dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MaterialManager
+  defaultMaterial: {fileID: 2100000, guid: fa42a92be4c92ed40b127ed730ec6338, type: 2}
+  outlineMaterial: {fileID: 2100000, guid: ac3e3c2218309ef49a854e532fdad239, type: 2}
 --- !u!1 &2111862370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349344,6 +1349371,7 @@ MonoBehaviour:
   dialogue: {fileID: 0}
   npcID: Forest guy
   movement: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!70 &2146541830
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1349894,3 +1349922,4 @@ SceneRoots:
   - {fileID: 1977643178}
   - {fileID: 5587212830622446697}
   - {fileID: 532600599}
+  - {fileID: 2105482511}

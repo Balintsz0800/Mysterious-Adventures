@@ -10,7 +10,6 @@ public class Item : ScriptableObject
     public int maxDurability = 100;
     public bool stackable;
     public bool carryable;
-    public bool tool;
 
     public Sprite image;
 

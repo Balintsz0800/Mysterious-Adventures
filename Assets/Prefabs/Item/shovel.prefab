@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c4e13569cc95ac40961a4705b4019a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::worldItem
-  item: {fileID: 11400000, guid: bba28c1efe4eed14d8036def6fa2d464, type: 2}
+  item: {fileID: 11400000, guid: 9d373b9e7d1e16443804cde66ec68a85, type: 2}
   amount: 1
   defaultMaterial: {fileID: 2100000, guid: fa42a92be4c92ed40b127ed730ec6338, type: 2}
   outlineMaterial: {fileID: 2100000, guid: ac3e3c2218309ef49a854e532fdad239, type: 2}

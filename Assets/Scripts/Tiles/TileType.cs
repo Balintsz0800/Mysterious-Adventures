@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum GroundType
+public enum TileType
 {
     Grass,
     Dirt,

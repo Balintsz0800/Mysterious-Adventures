@@ -48,8 +48,14 @@ public class QuestManager : MonoBehaviour
             if (questTitle != null)
             {
                 questTitle.text = "Quest started: " + quest.questName;
+                Invoke(nameof(ClearQuestText), 2.0f);
             }
         }
+    }
+
+    private void ClearQuestText()
+    {
+        questTitle.text = "";
     }
 
     public QuestState GetQuestState(QuestData quest)

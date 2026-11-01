@@ -43,8 +43,6 @@ public class FootSteps : MonoBehaviour
     {
         TileType groundType = TileManager.Instance.GetTileType(transform.position);
         
-        Debug.Log(groundType);
-
         float pitch = 0;
 
         switch (groundType)

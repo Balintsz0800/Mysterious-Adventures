@@ -13,7 +13,9 @@ public class TileManager : MonoBehaviour
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private List<TileGroundData> tileGroundData;
 
+    private bool inRange;
     private bool showPreview;
+    
 
     private readonly Dictionary<TileBase, TileType> tiles = new Dictionary<TileBase, TileType>();
 
@@ -67,7 +69,7 @@ public class TileManager : MonoBehaviour
         
         float distance = Vector2.Distance(playerCamera.transform.position, cellWorldPosition);
 
-        bool inRange = distance <= range;
+        inRange = distance <= range;
 
         preview.gameObject.SetActive(showPreview && inRange);
 
@@ -84,6 +86,14 @@ public class TileManager : MonoBehaviour
         mousePosition.z = Mathf.Abs(playerCamera.transform.position.z - tilemap.transform.position.z);
 
         return playerCamera.ScreenToWorldPoint(mousePosition);
+    }
+    
+    public Vector3Int GetMouseCellPosition()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = Mathf.Abs(playerCamera.transform.position.z - tilemap.transform.position.z);
+        
+        return tilemap.WorldToCell(playerCamera.ScreenToWorldPoint(mousePosition));
     }
 
     public void ShowPreview(bool show)
@@ -118,5 +128,22 @@ public class TileManager : MonoBehaviour
             return tileType;
 
         return default;
+    }
+
+    public void ModifyTile(Vector3Int position, TileType tileType)
+    {
+        Vector3Int cellPosition = tilemap.WorldToCell(position);
+        TileBase tile = tilemap.GetTile(cellPosition);
+        
+        if (tile == null) 
+            return;
+        
+        tilemap.SetTile(cellPosition, tileGroundData.Find(x => x.tileType == tileType).tiles[0]);
+        tiles[tile] = tileType;
+    }
+
+    public bool HoveredTileInRange()
+    {
+        return inRange;
     }
 }

@@ -1,13 +1,14 @@
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public class NPC : MonoBehaviour, Interactable
 {
     public GameObject interactText;
     [SerializeField] private NPCDialogue dialogue;
     public string npcID;
     private NPCRelationships npcRelationships;
     public NPCMovement movement;
-
+    public SpriteRenderer spriteRenderer;
+    
     private void Start()
     {
         npcRelationships = GetComponent<NPCRelationships>();
@@ -23,7 +24,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    public void Talk()
+    public void Interact()
     {
         if (dialogue != null && !dialogue.inInteractionRange)
         {
@@ -55,5 +56,15 @@ public class NPC : MonoBehaviour
         {
             QuestManager.Instance.OnTalk(this);
         }
+    }
+
+    public void Outline()
+    {
+        spriteRenderer.material = MaterialManager.Instance.outlineMaterial;
+    }
+    
+    public void RemoveOutline()
+    {
+        spriteRenderer.material = MaterialManager.Instance.defaultMaterial;
     }
 }

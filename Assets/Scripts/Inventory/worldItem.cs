@@ -1,14 +1,11 @@
 using System;
 using UnityEngine;
 
-public class WorldItem : MonoBehaviour
+public class WorldItem : MonoBehaviour, Interactable
 {
     public Item item;
     public int amount = 1;
-    
-    [SerializeField] private Material defaultMaterial;
-    [SerializeField] private Material outlineMaterial;
-    
+
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
@@ -16,7 +13,7 @@ public class WorldItem : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Pickup()
+    public void Interact()
     {
         InvManager invManager = FindFirstObjectByType<InvManager>();
 
@@ -32,13 +29,15 @@ public class WorldItem : MonoBehaviour
         }
     }
 
-    public void OutlineItem()
+    public void Outline()
     {
-        spriteRenderer.material = outlineMaterial;
+        if (spriteRenderer == null) return;
+        spriteRenderer.material = MaterialManager.Instance.outlineMaterial;
     }
-    
+
     public void RemoveOutline()
     {
-        spriteRenderer.material = defaultMaterial;
+        if (spriteRenderer == null) return;
+        spriteRenderer.material = MaterialManager.Instance.defaultMaterial;
     }
 }

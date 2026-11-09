@@ -1,6 +1,58 @@
-Download the file from itch.io
-link: https://balint0800.itch.io/mysterius-adventures
+Mysterious Adventures
+Mysterious Adventures is a 2D top-down adventure game currently in development using Unity and C#.
+The game is set in a small world that the player can freely explore. The project focuses on creating an immersive environment with NPC interactions, exploration, and different gameplay systems.
+Current Features
 
-Extract the files
+Player Movement
+• 2D top-down player movement.
+• 8-directional movement.
+• Character facing direction based on the last movement direction.
+• Camera follows the player.
 
-start the game and play
+World and Environment
+• Tilemap-based world.
+• Custom-designed environment and terrain.
+• Connected road system using Unity Rule Tiles.
+• Different areas are being created, including a village, forest, and farm.
+• Custom pixel-art textures and sprites.
+
+NPC System
+• NPC characters with independent movement.
+• Random wandering within defined areas.
+• NPC interaction system.
+• Interaction prompts when facing an NPC.
+
+Dialogue System
+• NPCs have predefined dialogue.
+• Dialogue UI.
+• Typewriter-style text animation.
+• Dialogue can be skipped while text is being displayed.
+
+Quest System
+• Basic quest management system.
+• Quest states, including not started, active, and completed.
+• Quest objectives with target IDs and required amounts.
+
+Inventory System
+• Inventory with item slots.
+• Item stacking.
+• Hotbar with 9 selectable slots.
+• Hotbar selection using number keys and the mouse scroll wheel.
+• Ability to drop items.
+
+Day and Night System
+• Day and night cycle.
+• Daytime tracking.
+• UI displaying the current time of day.
+
+Development Information
+• Game Engine: Unity 6.2
+• Programming Language: C#
+• Render Pipeline: Universal Render Pipeline (URP)
+• Perspective: 2D Top-Down
+• Art Style: Pixel Art
+The game is still actively being developed. New mechanics, content, and improvements are being added as development progresses.
+
+AI Disclosure
+AI tools were used as supplementary assistance during development, for, debugging.
+The development, implementation, integration, and testing of the game's systems are carried out by the development team. AI is used as an assisting tool, not as a replacement for the team's work.
